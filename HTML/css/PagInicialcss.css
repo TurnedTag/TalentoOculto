@@ -1,12 +1,13 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-body{
-height:100%;
+body {
+  height: 100%;
+  background-color: #b1b1b1; /* cinza claro elegante */
 }
 
 .container{
@@ -28,7 +29,7 @@ max-width:450px;
 }
 
 .logo{
-background-color:white;
+background-color:#979797;
 color:black;
 width:50px;
 height:50px;
@@ -40,15 +41,47 @@ justify-content:center;
 margin-bottom:16px;
 }
 
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.logo-container img {
+  width: 100px;   
+  height: auto;
+  border-radius: 50px; 
+  margin-bottom: 8px;
+}
+
+.logo-container h1 {
+  font-size: 28px;
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
 h1{
 font-size:32px;
 margin-bottom:8px;
+color: black;
+font-family: 'Poppins', sans-serif;
+
 }
+
+p{
+    color:black;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
 
 .subtitulo{
 font-size:18px;
-font-weight:500;
+font-weight:bold;
 margin-bottom:12px;
+color: black;
 }
 
 .descricao{
@@ -72,7 +105,7 @@ width:400px;
 display:flex;
 align-items:center;
 justify-content:center;
-background:#f9f9f9;
+  background-color: #b1b1b1; /* cinza claro elegante */
 }
 
 .login-box{
