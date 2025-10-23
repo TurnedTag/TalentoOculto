@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Perfil - Talento Oculto</title>
+<link rel="stylesheet" href="css/perfil.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+<body>
+
+<!-- Overlay do menu -->
+<input type="checkbox" id="menu-toggle">
+<div class="overlay"></div>
+
+<header>
+    <h1>Perfil</h1>
+    <div class="header-right">
+        <label for="menu-toggle" class="menu-icon">&#9776;</label>
+    </div>
+</header>
+
+<!-- Menu lateral -->
+<nav class="side-menu">
+    <label for="menu-toggle" class="close-menu">×</label>
+    <ul>
+        <li><a href="paginaPrincipal.html">Início</a></li>
+        <li><a href="#">Configurações</a></li>
+        <li><a href="index.html">Sair</a></li>
+    </ul>
+</nav>
+
+<section class="profile-container">
+    <div class="profile-card">
+
+        <div class="profile-header">
+            <img src="img/LogoTalentoOculto.jpeg" alt="Foto do Usuário">
+            <h2>João Silva</h2>
+            <p>@joaosilva</p>
+        </div>
+
+        <div class="profile-sections">
+
+            <div class="profile-info">
+                <h3>Informações</h3>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> joao@email.com</li>
+                    <li><i class="fa-solid fa-futbol"></i> Modalidade: Futebol</li>
+                    <li><i class="fa-solid fa-map-marker-alt"></i> Região: Sudeste</li>
+                </ul>
+            </div>
+
+            <div class="profile-stats">
+                <h3>Estatísticas</h3>
+                <ul>
+                    <li><i class="fa-solid fa-video"></i> Vídeos enviados: 12</li>
+                    <li><i class="fa-solid fa-thumbs-up"></i> Curtidas totais: 340</li>
+                </ul>
+            </div>
+
+            <div class="profile-actions">
+                <button class="edit-btn">Editar Perfil</button>
+                <button class="change-password-btn">Alterar Senha</button>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
