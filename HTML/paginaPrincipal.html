@@ -4,16 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vitrine de Atletas</title>
+
 <link rel="stylesheet" href="css/paginaPrincipal.css">
 <link rel="stylesheet" href="css/tema.css">
-
-
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
 <body>
 
-<!-- Overlay do menu -->
+<!-- MENU E HEADER -->
 <input type="checkbox" id="menu-toggle">
 <div class="overlay"></div>
 
@@ -25,7 +23,6 @@
     </div>
 </header>
 
-<!-- Menu lateral -->
 <nav class="side-menu">
     <label for="menu-toggle" class="close-menu">×</label>
     <ul>
@@ -35,6 +32,7 @@
     </ul>
 </nav>
 
+<!-- FILTROS -->
 <section class="filters">
     <input type="text" placeholder="Buscar atleta..." class="search-bar">
     <select>
@@ -54,100 +52,89 @@
     </select>
 </section>
 
-<section class="athlete-grid">
+<!-- SEÇÃO DOS CARDS DINÂMICOS -->
+<section class="athlete-grid" id="videos-dinamicos"></section>
 
-    <!-- Card 1 -->
-    <a href="paginaAtleta.html" class="athlete-card">
-        <span class="badge novo">Novo</span>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        <div class="athlete-info">
-            <h3>João Silva</h3>
-            <p>Futebol - Sudeste</p>
-            <div class="actions">
-                <input type="checkbox" id="like1" class="like-checkbox">
-                <label for="like1" class="like-btn"><i class="fa-solid fa-thumbs-up"></i></label>
-                <button class="chat-btn"><i class="fa-solid fa-comment"></i></button>
-            </div>
-        </div>
-    </a>
-
-    <!-- Card 2 -->
-    <a href="paginaAtleta.html" class="athlete-card">
-        <span class="badge mais-curtido">Mais Curtido</span>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        <div class="athlete-info">
-            <h3>Maria Souza</h3>
-            <p>Basquete - Nordeste</p>
-            <div class="actions">
-                <input type="checkbox" id="like2" class="like-checkbox">
-                <label for="like2" class="like-btn"><i class="fa-solid fa-thumbs-up"></i></label>
-                <button class="chat-btn"><i class="fa-solid fa-comment"></i></button>
-            </div>
-        </div>
-    </a>
-
-    <!-- Card 3 -->
-    <a href="paginaAtleta.html" class="athlete-card">
-        <span class="badge novo">Novo</span>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        <div class="athlete-info">
-            <h3>Lucas Pereira</h3>
-            <p>Vôlei - Sul</p>
-            <div class="actions">
-                <input type="checkbox" id="like3" class="like-checkbox">
-                <label for="like3" class="like-btn"><i class="fa-solid fa-thumbs-up"></i></label>
-                <button class="chat-btn"><i class="fa-solid fa-comment"></i></button>
-            </div>
-        </div>
-    </a>
-
-    <!-- Card 4 -->
-    <a href="paginaAtleta.html" class="athlete-card">
-        <span class="badge mais-curtido">Mais Curtido</span>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        <div class="athlete-info">
-            <h3>Ana Carvalho</h3>
-            <p>Tênis - Centro-Oeste</p>
-            <div class="actions">
-                <input type="checkbox" id="like4" class="like-checkbox">
-                <label for="like4" class="like-btn"><i class="fa-solid fa-thumbs-up"></i></label>
-                <button class="chat-btn"><i class="fa-solid fa-comment"></i></button>
-            </div>
-        </div>
-    </a>
-
-    <!-- Card 5 -->
-    <a href="paginaAtleta.html" class="athlete-card">
-        <span class="badge novo">Novo</span>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        <div class="athlete-info">
-            <h3>Rafael Lima</h3>
-            <p>Futebol - Norte</p>
-            <div class="actions">
-                <input type="checkbox" id="like5" class="like-checkbox">
-                <label for="like5" class="like-btn"><i class="fa-solid fa-thumbs-up"></i></label>
-                <button class="chat-btn"><i class="fa-solid fa-comment"></i></button>
-            </div>
-        </div>
-    </a>
-
-    <!-- Card 6 -->
-    <a href="paginaAtleta.html" class="athlete-card">
-        <span class="badge mais-curtido">Mais Curtido</span>
-        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
-        <div class="athlete-info">
-            <h3>Carla Mendes</h3>
-            <p>Basquete - Sudeste</p>
-            <div class="actions">
-                <input type="checkbox" id="like6" class="like-checkbox">
-                <label for="like6" class="like-btn"><i class="fa-solid fa-thumbs-up"></i></label>
-                <button class="chat-btn"><i class="fa-solid fa-comment"></i></button>
-            </div>
-        </div>
-    </a>
-
-</section>
 <script src="js/tema.js"></script>
+
+<script>
+// ====================== CARREGAR VÍDEOS ======================
+function carregarVideos() {
+    const container = document.getElementById("videos-dinamicos");
+    const videos = JSON.parse(localStorage.getItem("videos")) || [];
+    container.innerHTML = "";
+
+    videos.forEach(v => {
+        const card = document.createElement("a");
+        card.href = "paginaAtleta.html";
+        card.classList.add("athlete-card");
+
+        card.innerHTML = `
+            <span class="badge novo">Novo</span>
+            <video controls class="video-player">
+                <source src="${v.url}" type="${v.tipo}">
+                Seu navegador não suporta vídeos.
+            </video>
+            <div class="athlete-info">
+                <h3>${v.nome}</h3>
+                <p>${v.esporte} - ${v.regiao}</p>
+                <div class="actions">
+                    <input type="checkbox" id="like_${v.id}" class="like-checkbox">
+                    <label for="like_${v.id}" class="like-btn">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </label>
+                    <span class="like-count" data-like-id="like_${v.id}">
+                        ${v.likes || 0}
+                    </span>
+                    <button class="chat-btn">
+                        <i class="fa-solid fa-comment"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+
+        container.appendChild(card);
+    });
+
+    ativarSistemaDeLikes();
+}
+
+// ====================== SISTEMA DE LIKES ======================
+function ativarSistemaDeLikes() {
+    document.querySelectorAll(".like-checkbox").forEach(checkbox => {
+        const id = checkbox.id;
+        const countElement = document.querySelector(`.like-count[data-like-id="${id}"]`);
+
+        let estado = localStorage.getItem(id + "_state");
+        let count = parseInt(localStorage.getItem(id + "_count")) || parseInt(countElement.textContent);
+
+        // Restaurar estado
+        if (estado === "liked") {
+            checkbox.checked = true;
+            checkbox.nextElementSibling.classList.add("liked");
+        }
+
+        // Atualizar likes ao clicar
+        checkbox.addEventListener("change", () => {
+            if (checkbox.checked) {
+                count++;
+                localStorage.setItem(id + "_state", "liked");
+                checkbox.nextElementSibling.classList.add("liked");
+            } else {
+                count--;
+                localStorage.setItem(id + "_state", "unliked");
+                checkbox.nextElementSibling.classList.remove("liked");
+            }
+
+            countElement.textContent = count;
+            localStorage.setItem(id + "_count", count);
+        });
+    });
+}
+
+// Carregar vídeos ao abrir a página
+carregarVideos();
+</script>
 
 </body>
 </html>

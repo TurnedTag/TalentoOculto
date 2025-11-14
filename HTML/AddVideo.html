@@ -7,7 +7,6 @@
 
 <link rel="stylesheet" href="css/tema.css">
 <link rel="stylesheet" href="css/AddVideo.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -19,7 +18,7 @@
 
 <main>
     <div class="upload-container">
-        <form>
+        <form id="videoForm">
             <label for="video">Escolha o vídeo:</label>
             <input type="file" id="video" accept="video/*" required>
 
@@ -54,5 +53,62 @@
 </main>
 
 <script src="js/tema.js"></script>
+
+<script>
+// ===================== SALVAR VÍDEO NO LOCALSTORAGE =====================
+document.getElementById("videoForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const arquivo = document.getElementById("video").files[0];
+
+    if (!arquivo) {
+        alert("Selecione um vídeo!");
+        return;
+    }
+
+    // Limite de tamanho para evitar travar o navegador (10MB)
+    const maxSize = 10 * 1024 * 1024; 
+    if (arquivo.size > maxSize) {
+        alert("O vídeo é muito grande! Tente enviar arquivos menores que 10MB.");
+        return;
+    }
+
+    const leitor = new FileReader();
+
+    leitor.onload = function(event) {
+        const base64Video = event.target.result;
+
+        const novoVideo = {
+            id: Date.now(),
+            nome: document.getElementById("nome").value,
+            esporte: document.getElementById("esporte").value,
+            regiao: document.getElementById("regiao").value,
+            descricao: document.getElementById("descricao").value,
+            url: base64Video,
+            tipo: arquivo.type,
+            likes: 0,
+            jaDeuLike: false
+        };
+
+        let videos = JSON.parse(localStorage.getItem("videos")) || [];
+        videos.push(novoVideo);
+        localStorage.setItem("videos", JSON.stringify(videos));
+
+        // Debug no console
+        console.log("Vídeo salvo no localStorage:", novoVideo);
+
+        alert("Vídeo enviado com sucesso!");
+        window.location.href = "paginaPrincipal.html";
+    };
+
+    leitor.onerror = function() {
+        alert("Erro ao ler o arquivo de vídeo.");
+        console.error("Erro FileReader:", leitor.error);
+    };
+
+    leitor.readAsDataURL(arquivo);
+});
+</script>
+
 </body>
 </html>
