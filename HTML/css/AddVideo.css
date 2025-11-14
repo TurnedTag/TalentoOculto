@@ -1,3 +1,26 @@
+/* ---------- VARIÁVEIS DE TEMA ---------- */
+:root {
+    --bg: #e8e8e8;
+    --text: #333;
+    --card-bg: #ffffff;
+    --header-bg: #414040;
+    --button-bg: #000;
+    --button-bg-hover: #222;
+    --border: #ccc;
+}
+
+[data-theme="dark"] {
+    --bg: #121212;
+    --text: #f0f0f0;
+    --card-bg: #1f1f1f;
+    --header-bg: #000;
+    --button-bg: #333;
+    --button-bg-hover: #555;
+    --border: #444;
+}
+
+
+/* ---------- ESTILO GLOBAL ---------- */
 * {
     margin:0;
     padding:0;
@@ -6,29 +29,33 @@
 }
 
 body {
-    background: #e8e8e8;
+    background: var(--bg);
     min-height: 100vh;
-    color: #333;
+    color: var(--text);
 }
 
+/* ---------- HEADER ---------- */
 header {
     display:flex;
     justify-content:space-between;
     align-items:center;
-    background:#414040;
+    background: var(--header-bg);
     color:white;
     padding:15px 30px;
 }
+
 header h1 { font-size:24px; }
+
 .back-btn {
     text-decoration:none;
     color:white;
-    background:black;
+    background: var(--button-bg);
     padding:6px 12px;
     border-radius:6px;
 }
-.back-btn:hover { background:#222; }
+.back-btn:hover { background: var(--button-bg-hover); }
 
+/* ---------- MAIN ---------- */
 main {
     display:flex;
     justify-content:center;
@@ -36,7 +63,7 @@ main {
 }
 
 .upload-container {
-    background:white;
+    background: var(--card-bg);
     padding:30px;
     border-radius:12px;
     box-shadow:0 4px 20px rgba(0,0,0,0.08);
@@ -57,7 +84,9 @@ main {
 .upload-container form textarea {
     width:100%;
     padding:10px;
-    border:1px solid #ccc;
+    border:1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text);
     border-radius:6px;
     font-size:14px;
 }
@@ -71,7 +100,7 @@ main {
     width:100%;
     padding:12px;
     margin-top:20px;
-    background:black;
+    background: var(--button-bg);
     color:white;
     border:none;
     border-radius:6px;
@@ -81,5 +110,5 @@ main {
 }
 
 .upload-container form button:hover {
-    background:#222;
+    background: var(--button-bg-hover);
 }

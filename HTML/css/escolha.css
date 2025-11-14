@@ -1,3 +1,29 @@
+/* =====================================
+      VARIÁVEIS DE TEMA
+===================================== */
+
+/* Tema Claro */
+:root {
+  --bg: #e0e0e0;
+  --card-bg: #ffffff;
+  --text: #333;
+  --shadow: rgba(0,0,0,0.2);
+  --card-border: #dcdcdc;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --card-bg: #2b2b2b;
+  --text: #f1f1f1;
+  --shadow: rgba(0,0,0,0.6);
+  --card-border: #444;
+}
+
+/* =====================================
+      RESET
+===================================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -5,47 +31,75 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* =====================================
+      CORPO
+===================================== */
+
 body {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #e0e0e0; /* fundo cinza */
+
+  background-color: var(--bg);
+  transition: background 0.3s;
 }
+
+/* =====================================
+      CONTAINER
+===================================== */
 
 .container-escolha {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px; /* espaço entre os quadrados */
+  gap: 40px;
 }
+
+/* =====================================
+      CARD
+===================================== */
 
 .card {
   width: 250px;
   height: 250px;
-  background-color: white;
+  background-color: var(--card-bg);
   border-radius: 12px;
+
+  border: 2px solid var(--card-border);
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s, border 0.3s;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 20px var(--shadow);
 }
+
+/* =====================================
+      EMOJI
+===================================== */
 
 .emoji {
   font-size: 60px;
   margin-bottom: 20px;
+
   filter: grayscale(100%); /* preto e branco */
 }
+
+/* =====================================
+      TÍTULO
+===================================== */
 
 .card h2 {
   font-size: 24px;
   font-weight: 700;
-  color: #333;
+  color: var(--text);
+  transition: color 0.3s;
 }

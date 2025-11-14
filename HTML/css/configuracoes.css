@@ -1,0 +1,189 @@
+/* ===========================
+   VARIÁVEIS DE TEMA
+=========================== */
+
+/* Tema Claro */
+:root {
+    --bg: #e8e8e8;
+    --bg-card: #ffffff;
+    --header-bg: #414040;
+    --text: #1a1a1a;
+    --card-border: #dcdcdc;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+    --bg: #1a1a1a;
+    --bg-card: #2b2b2b;
+    --header-bg: #111111;
+    --text: #f2f2f2;
+    --card-border: #444;
+}
+
+/* ===========================
+       RESET
+=========================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===========================
+       BODY
+=========================== */
+body {
+    background: linear-gradient(135deg, var(--bg), var(--bg-card));
+    color: var(--text);
+    min-height: 100vh;
+}
+
+/* ===========================
+       HEADER
+=========================== */
+header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: var(--header-bg);
+    color: var(--text);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 24px;
+}
+
+/* Botão voltar */
+.back-btn {
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 600;
+    background: var(--bg-card);
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 2px solid var(--card-border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+}
+
+.back-btn i {
+    font-size: 18px;
+}
+
+.back-btn:hover {
+    background: var(--bg);
+    transform: translateX(-3px);
+}
+
+/* ===========================
+       MAIN CONTAINER
+=========================== */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.profile-card {
+    background: var(--bg-card);
+    border-radius: 16px;
+    padding: 30px 40px;
+    width: 100%;
+    max-width: 600px;
+    border: 2px solid var(--card-border);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: 0.3s;
+}
+
+/* ===========================
+       SECTIONS
+=========================== */
+.profile-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Cada seção */
+.profile-info,
+.profile-stats {
+    background: var(--bg);
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.profile-info h3,
+.profile-stats h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: var(--text);
+}
+
+/* Labels e selects */
+.label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--card-border);
+    background-color: var(--bg-card);
+    color: var(--text);
+}
+
+/* ===========================
+       BOTÕES
+=========================== */
+.edit-btn,
+.change-password-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: white;
+    transition: 0.3s;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.edit-btn {
+    background: #007bff;
+}
+.edit-btn:hover {
+    background: #0056b3;
+}
+
+.change-password-btn {
+    background: #d9534f;
+}
+.change-password-btn:hover {
+    background: #b52b27;
+}
+
+/* ===========================
+       RESPONSIVIDADE
+=========================== */
+@media (max-width: 650px) {
+    .profile-card {
+        padding: 25px 20px;
+    }
+
+    .profile-sections {
+        gap: 20px;
+    }
+}

@@ -1,4 +1,42 @@
-/* === Configuração Global === */
+/* ===========================
+   VARIÁVEIS DE TEMA
+=========================== */
+
+/* Tema Claro – harmonioso e com lado esquerdo diferente */
+:root {
+  --bg: #f2f2f2;             /* fundo geral suave e claro */
+  --bg-card: #ffffff;         /* branco para cards */
+  --left-bg: #e0e0e0;         /* lado esquerdo diferenciado */
+  --right-bg: #ffffff;        /* lado direito do login */
+  --header-bg: #3a3a3a;       /* cinza elegante para lateral */
+  --menu-bg: #4a4a4a;         /* menu lateral harmônico */
+  --text: #1a1a1a;            /* texto principal escuro */
+  --card-border: #dcdcdc;     /* borda suave nos cards */
+  --link-color: #1a73e8;      /* azul moderno para links */
+  --btn-bg: rgba(0,0,0,0.05); /* translucidez leve para botões */
+  --btn-hover: rgba(0,0,0,0.12); /* hover destacado */
+  --title-color: var(--text);  /* título Talento Oculto segue cor do texto */
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --bg-card: #2b2b2b;
+  --left-bg: #111111;        /* lado esquerdo escuro */
+  --right-bg: #2b2b2b;       /* lado direito */
+  --header-bg: #111111;
+  --menu-bg: #0f0f0f;
+  --text: #f2f2f2;
+  --card-border: #444;
+  --link-color: #4da6ff;
+  --btn-bg: rgba(255,255,255,0.05);
+  --btn-hover: rgba(255,255,255,0.15);
+  --title-color: var(--text);  /* título Talento Oculto segue cor do texto */
+}
+
+/* ===========================
+   RESET
+=========================== */
 * {
   margin: 0;
   padding: 0;
@@ -12,28 +50,33 @@ html, body {
 
 body {
   display: flex;
-  flex-direction: column; /* empilha container e footer */
-  justify-content: space-between; /* footer fica embaixo */
-  background-color: #e8e8e8; /* fundo cinza para toda a tela */
-  overflow: hidden; /* remove scroll */
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
 }
 
-/* Container da tela inteira (left + right) */
+/* ===========================
+   CONTAINER PRINCIPAL
+=========================== */
 .container {
   display: flex;
+  flex: 1;
   width: 100%;
-  flex: 1; /* ocupa todo o espaço entre topo e footer */
-  height: calc(100vh - 60px); /* altura total da tela menos footer */
+  height: calc(100vh - 60px);
 }
 
+/* LADO ESQUERDO */
 .left {
   flex: 1;
-  background: #414040;
-  color: white;
+  background: var(--left-bg);
+  color: var(--text);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 40px;
+  border-radius: 0 20px 20px 0;
 }
 
 .branding {
@@ -44,132 +87,161 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 3px solid white;
-  margin-bottom: 10px;
+  border: 3px solid var(--text);
+  margin-bottom: 15px;
 }
 
 .logo-container h1 {
   font-size: 36px;
   font-weight: 700;
+  margin-bottom: 18px;
+  color: var(--title-color); /* removido azul, segue cor do texto */
 }
 
 .subtitulo {
-  font-size: 20px;
-  margin: 16px 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  line-height: 1.5;
+  color: var(--text);
 }
 
 .descricao {
   font-size: 15px;
-  line-height: 1.5;
-  margin-bottom: 12px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  opacity: 0.85;
+  color: var(--text);
 }
 
-ul {
+.left ul {
   list-style: none;
   padding: 0;
-}
-
-ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   font-size: 14px;
-  margin: 4px 0;
+  color: var(--text);
 }
 
+.left ul li::before {
+  content: "•";
+  color: var(--link-color);
+  margin-right: 6px;
+}
+
+/* LADO DIREITO (LOGIN) */
 .right {
   flex: 1;
-  background: #414040;
+  background: var(--right-bg);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .login-box {
-  background: white;
+  background: var(--bg-card);
   padding: 36px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   width: 80%;
   max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .login-box h2 {
   font-size: 24px;
   text-align: center;
   margin-bottom: 8px;
+  color: var(--text);
 }
 
 .login-box p {
   font-size: 13px;
   text-align: center;
-  color: #555;
+  color: #555555;
   margin-bottom: 16px;
 }
 
-input[type="email"],
-input[type="password"] {
+.login-box label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.login-box input[type="email"],
+.login-box input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--card-border);
   border-radius: 6px;
   font-size: 14px;
+  background: var(--bg-card);
+  color: var(--text);
 }
 
-button {
-  width: 100%;
-  padding: 12px;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
+/* ===========================
+   BOTÕES PROFISSIONAIS
+=========================== */
+button, .forgot-password a, .register-text a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: 2px solid var(--card-border);
+  background: var(--btn-bg);
+  color: var(--text);
   font-weight: 600;
   cursor: pointer;
-}
-
-
-
-button:hover {
-  background: #222;
-}
-
-.forgot-container {
-  text-align: center;
-  margin: 10px 0 16px;
-}
-
-.forgot-link {
-  color: #000000;
   text-decoration: none;
-  font-weight: 600;
-  font-size: 13px;
+  transition: 0.3s;
 }
 
-.forgot-link:hover {
-  text-decoration: underline;
+button:hover, .forgot-password a:hover, .register-text a:hover {
+  background: var(--btn-hover);
+  transform: translateY(-2px);
 }
 
+/* Botão "Entrar" – mesmo tamanho e estilo dos outros botões */
+button[type="submit"] {
+  background: var(--btn-bg);
+  color: var(--text);
+  border: 2px solid var(--card-border);
+  padding: 12px 18px;
+  width: 100%;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+button[type="submit"]:hover {
+  background: var(--btn-hover);
+}
+
+/* Links de esquecimento e registro */
+.forgot-password,
 .register-text {
   text-align: center;
-  margin-top: 16px;
   font-size: 13px;
 }
 
-.register-text a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: 600;
+.forgot-password a, .register-text a {
+  width: 100%;
+  justify-content: center;
 }
 
-.register-text a:hover {
-  text-decoration: underline;
-}
-
+/* Footer */
 .footer-links {
   text-align: center;
   font-size: 13px;
-  color: #737373;
+  color: var(--text);
   padding: 12px 10px;
-  background-color: #e8e8e8;
+  background-color: var(--bg);
 }
 
 .footer-links ul {
@@ -178,18 +250,22 @@ button:hover {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  margin: 0;
-  padding: 0;
+  margin-bottom: 4px;
 }
 
 .footer-links ul li a {
   text-decoration: none;
-  color: #737373;
+  color: var(--text);
 }
 
 .footer-links ul li a:hover {
   text-decoration: underline;
-  color: #000;
+  color: var(--link-color);
+}
+
+.footer-links p {
+  font-size: 12px;
+  opacity: 0.7;
 }
 
 /* Responsividade */
