@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talento Oculto - Login</title>
+  <link rel="stylesheet" href="{% static 'css/PagInicialcss.css' %}">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Lado esquerdo -->
+    <div class="left">
+      <div class="branding">
+        <div class="logo-container">
+          <img src="{% static 'img/LogoTalentoOculto.jpeg' %}" alt="Logo Talento Oculto">
+          <h1>Talento Oculto</h1>
+        </div>
+        <p class="subtitulo">A plataforma gratuita que conecta talentos esportivos com oportunidades.</p>
+        <p class="descricao">
+          Dê visibilidade ao seu talento esportivo e seja descoberto por treinadores, olheiros e clubes em todo o Brasil.
+        </p>
+        <ul>
+          <li>✅ Gratuito e inclusivo</li>
+          <li>🏅 Múltiplas modalidades esportivas</li>
+          <li>🤝 Conexão direta com profissionais</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Lado direito (Login) -->
+    <div class="right">
+      <div class="login-box">
+        <h2>Entrar</h2>
+        <p>Mostre seu talento esportivo e seja visto por olheiros.</p>
+        <form action="{% url 'paginaPrincipal' %}" method="post">
+          {% csrf_token %}
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+
+          <label for="senha">Senha</label>
+          <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+
+          <button type="submit">Entrar</button>
+
+          <div class="forgot-password">
+            <a href="#">Esqueceu a senha?</a>
+          </div>
+
+          <!-- Registro -->
+          <p class="register-text">Não tem conta? <a href="{% url 'escolha' %}">Crie aqui</a></p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer institucional -->
+  <footer class="footer-links">
+    <ul>
+      <li><a href="#">Sobre</a></li>
+      <li><a href="#">Contate a gente</a></li>
+      <li><a href="#">Privacidade</a></li>
+      <li><a href="#">Termos</a></li>
+      <li><a href="#">Ajuda</a></li>
+    </ul>
+    <p>© 2025 Talento Oculto</p>
+  </footer>
+
+  <script src="{% static 'js/tema.js' %}"></script>
+
+</body>
+</html>
