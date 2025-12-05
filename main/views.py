@@ -28,3 +28,9 @@ def configuracoes(request):
 
 def AddVideo(request):
     return render(request, 'main/AddVideo.html')
+
+def criarContaAtleta(request):
+    return render(request, 'main/criarContaAtleta.html')
+    
+def criarContaAgente(request):
+    return render(request, 'main/criarContaAgente.html')

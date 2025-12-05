@@ -1,0 +1,181 @@
+/* Usa as variáveis do tema.css automaticamente */
+
+/* ==========================
+      LAYOUT GERAL
+========================== */
+
+body {
+    background: linear-gradient(135deg, var(--bg), var(--bg-card));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================
+          HEADER
+========================== */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--header-bg);
+    padding: 15px 25px;
+    color: var(--text);
+}
+
+header h1 {
+    font-size: 22px;
+}
+
+/* Botão voltar */
+.back-btn {
+    padding: 10px 15px;
+    background: var(--bg-card);
+    color: var(--text);
+    border: 2px solid var(--card-border);
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: .3s;
+}
+
+.back-btn:hover {
+    background: var(--bg);
+    transform: translateX(-3px);
+}
+
+/* ==========================
+       FORM CONTAINER
+========================== */
+
+.form-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.register-card {
+    width: 100%;
+    max-width: 500px;
+    background: var(--bg-card);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    border: 2px solid var(--card-border);
+}
+
+.register-card h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: var(--text);
+}
+
+/* ==========================
+         FOTO PERFIL
+========================== */
+
+.photo-upload {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.photo-upload img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--text);
+    margin-bottom: 10px;
+}
+
+.photo-upload label {
+    cursor: pointer;
+}
+
+.photo-upload p {
+    color: var(--text);
+    font-weight: 600;
+    opacity: .7;
+}
+
+#foto {
+    display: none;
+}
+
+/* ==========================
+         INPUTS
+========================== */
+
+.input-box {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--text);
+}
+
+.input-box input,
+.input-box select {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid var(--card-border);
+    outline: none;
+    font-size: 15px;
+    background: var(--bg);
+    color: var(--text);
+}
+
+/* ==========================
+         BOTÃO
+========================== */
+
+.create-btn {
+    width: 100%;
+    padding: 14px;
+    background: #007bff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.create-btn:hover {
+    background: #0056b3;
+}
+
+/* ==========================
+         TEXTO FINAL
+========================== */
+
+.login-text {
+    margin-top: 20px;
+    text-align: center;
+    color: var(--text);
+}
+
+.login-text a {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* ==========================
+     RESPONSIVIDADE
+========================== */
+
+@media (max-width: 520px) {
+    .register-card {
+        padding: 20px;
+    }
+}

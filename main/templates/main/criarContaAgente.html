@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Criar Conta - Agente</title>
+
+<link rel="stylesheet" href="{% static 'css/criarContaAtleta.css' %}">
+<link rel="stylesheet" href="{% static 'css/tema.css' %}">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+</head>
+
+<body>
+
+<header>
+    <a href="{% url 'index' %}" class="back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+    </a>
+    <h1>Criar Conta – Agente</h1>
+</header>
+
+<section class="form-container">
+
+    <form class="register-card">
+
+        <h2>Informações do Agente</h2>
+
+        <!-- Foto -->
+        <div class="photo-upload">
+            <label for="foto">
+                <img src="{% static 'img/placeholderUser.png' %}" id="preview">
+                <p><i class="fa-solid fa-camera"></i> Adicionar Foto</p>
+            </label>
+            <input type="file" id="foto" accept="image/*">
+        </div>
+
+        <!-- Nome -->
+        <div class="input-box">
+            <label>Nome Completo</label>
+            <input type="text" placeholder="Ex: Carlos Almeida" required>
+        </div>
+
+        <!-- Usuário -->
+        <div class="input-box">
+            <label>Nome de Usuário</label>
+            <input type="text" placeholder="@agentePro" required>
+        </div>
+
+        <!-- Email -->
+        <div class="input-box">
+            <label>Email</label>
+            <input type="email" placeholder="exemplo@email.com" required>
+        </div>
+
+        <!-- Senha -->
+        <div class="input-box">
+            <label>Senha</label>
+            <input type="password" placeholder="Crie uma senha forte" required>
+        </div>
+
+        <div class="input-box">
+            <label>Confirmar Senha</label>
+            <input type="password" placeholder="Repita a senha" required>
+        </div>
+
+        <!-- Área de atuação -->
+        <div class="input-box">
+            <label>Área de Atuação</label>
+            <select required>
+                <option value="">Selecione...</option>
+                <option>Futebol</option>
+                <option>Basquete</option>
+                <option>Vôlei</option>
+                <option>Multiesportivo</option>
+            </select>
+        </div>
+
+        <!-- Região -->
+        <div class="input-box">
+            <label>Região</label>
+            <select required>
+                <option value="">Selecione...</option>
+                <option>Norte</option>
+                <option>Nordeste</option>
+                <option>Centro-Oeste</option>
+                <option>Sudeste</option>
+                <option>Sul</option>
+            </select>
+        </div>
+
+        <!-- Descrição profissional -->
+        <div class="input-box">
+            <label>Descrição Profissional</label>
+            <textarea placeholder="Fale um pouco sobre sua experiência como agente"></textarea>
+        </div>
+
+        <button class="create-btn">Criar Conta</button>
+
+    </form>
+
+</section>
+
+<script src="{% static 'js/tema.js' %}"></script>
+
+</body>
+</html>

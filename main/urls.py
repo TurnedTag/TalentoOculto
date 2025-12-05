@@ -8,4 +8,7 @@ urlpatterns = [
     path('perfil/', views.perfil, name='perfil'),
     path('configuracoes/', views.configuracoes, name='configuracoes'),
     path('AddVideo/', views.AddVideo, name='AddVideo'),
+    path('criarContaAtleta/', views.criarContaAtleta, name='criarContaAtleta'),
+    path('criarContaAgente/', views.criarContaAgente, name='criarContaAgente'),
+
 ]
