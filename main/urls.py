@@ -10,5 +10,6 @@ urlpatterns = [
     path('AddVideo/', views.AddVideo, name='AddVideo'),
     path('criarContaAtleta/', views.criarContaAtleta, name='criarContaAtleta'),
     path('criarContaAgente/', views.criarContaAgente, name='criarContaAgente'),
-
+    path("card/<int:id>/", views.card, name="card"),
+    path("like/<int:video_id>/", views.like_video, name="like_video"),
 ]

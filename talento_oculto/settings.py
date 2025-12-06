@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "main",  # <- adicione seu app aqui
+    "main",
 ]
 
 MIDDLEWARE = [
@@ -33,7 +33,7 @@ ROOT_URLCONF = "talento_oculto.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "templates"],  # <--- pasta global de templates (opcional)
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -66,12 +66,31 @@ TIME_ZONE = "America/Sao_Paulo"
 USE_I18N = True
 USE_TZ = True
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]  # onde ficarão css, js, img
+
+# -----------------------------
+# STATIC FILES (CSS, JS, IMG)
+# -----------------------------
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+
+# -----------------------------
+# MEDIA FILES (para vídeos)
+# -----------------------------
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1073741824
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1073741824
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'https://localhost:8000',
 ]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"

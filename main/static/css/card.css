@@ -1,0 +1,72 @@
+/* Mantém a base do site */
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Centralização padrão igual ao resto do site */
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.card-detalhe {
+    background: var(--card-bg);
+    color: var(--card-text);
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    padding: 25px;
+}
+
+/* Vídeo menor e padronizado */
+.video-wrapper video {
+    width: 100%;
+    max-height: 280px;
+    border-radius: 12px;
+    object-fit: cover;
+    background: black;
+}
+
+/* Títulos e textos */
+.info-wrapper h2 {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.info-wrapper h3 {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.info-wrapper p {
+    margin: 6px 0;
+    font-size: 16px;
+}
+
+/* Caixa da descrição */
+.descricao {
+    background: var(--input-bg);
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+}
+
+/* Botão padrão */
+.chat-btn-detalhe {
+    margin-top: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.chat-btn-detalhe:hover {
+    background: var(--primary-hover);
+}

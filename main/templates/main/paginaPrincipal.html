@@ -12,7 +12,6 @@
 </head>
 <body>
 
-<!-- MENU E HEADER -->
 <input type="checkbox" id="menu-toggle">
 <div class="overlay"></div>
 
@@ -33,106 +32,129 @@
     </ul>
 </nav>
 
-<!-- FILTROS -->
+<!-- ====================  FILTROS AUTOMÁTICOS  ==================== -->
 <section class="filters">
-    <input type="text" placeholder="Buscar atleta..." class="search-bar">
-    <select>
-        <option value="All">Todas as Regiões</option>
-        <option value="Norte">Norte</option>
-        <option value="Nordeste">Nordeste</option>
-        <option value="Sudeste">Sudeste</option>
-        <option value="Sul">Sul</option>
-        <option value="Centro-Oeste">Centro-Oeste</option>
-    </select>
-    <select>
-        <option value="All">Todos os Esportes</option>
-        <option value="Futebol">Futebol</option>
-        <option value="Basquete">Basquete</option>
-        <option value="Vôlei">Vôlei</option>
-        <option value="Tênis">Tênis</option>
-    </select>
+    <form method="get" class="filter-form" id="form-filtros">
+
+        <input type="text" name="nome" placeholder="Buscar atleta..." class="search-bar"
+               value="{{ request.GET.nome }}" id="filtro-nome">
+
+        <select name="regiao" id="filtro-regiao">
+            <option value="All">Todas as Regiões</option>
+            <option value="Norte" {% if request.GET.regiao == "Norte" %}selected{% endif %}>Norte</option>
+            <option value="Nordeste" {% if request.GET.regiao == "Nordeste" %}selected{% endif %}>Nordeste</option>
+            <option value="Sudeste" {% if request.GET.regiao == "Sudeste" %}selected{% endif %}>Sudeste</option>
+            <option value="Sul" {% if request.GET.regiao == "Sul" %}selected{% endif %}>Sul</option>
+            <option value="Centro-Oeste" {% if request.GET.regiao == "Centro-Oeste" %}selected{% endif %}>Centro-Oeste</option>
+        </select>
+
+        <select name="esporte" id="filtro-esporte">
+            <option value="All">Todos os Esportes</option>
+            <option value="Futebol" {% if request.GET.esporte == "Futebol" %}selected{% endif %}>Futebol</option>
+            <option value="Basquete" {% if request.GET.esporte == "Basquete" %}selected{% endif %}>Basquete</option>
+            <option value="Vôlei" {% if request.GET.esporte == "Vôlei" %}selected{% endif %}>Vôlei</option>
+            <option value="Tênis" {% if request.GET.esporte == "Tênis" %}selected{% endif %}>Tênis</option>
+        </select>
+
+        <!-- botão removido -->
+    </form>
 </section>
 
-<!-- SEÇÃO DOS CARDS DINÂMICOS -->
-<section class="athlete-grid" id="videos-dinamicos"></section>
+<div class="container">
+<section class="athlete-grid">
+
+    {% for v in videos %}
+    <div class="athlete-card">
+
+        <span class="badge novo">Novo</span>
+
+        <video controls class="video-player" onclick="event.stopPropagation();">
+            <source src="{{ v.arquivo.url }}" type="video/mp4">
+        </video>
+
+        <div class="athlete-info"
+             onclick="abrirCard('{{ v.id }}')">
+
+            <h3>{{ v.nome }}</h3>
+            <p>{{ v.esporte }} - {{ v.regiao }}</p>
+
+            <div class="actions" onclick="event.stopPropagation();">
+
+                <!-- LIKE COM CORES -->
+                <button class="like-btn {% if v.user_liked %}liked{% endif %}"
+                        onclick="darLike({{ v.id }}, this)">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                </button>
+
+                <span class="like-count">{{ v.likes }}</span>
+
+                <button class="chat-btn">
+                    <i class="fa-solid fa-comment"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+    {% empty %}
+        <p style="text-align:center;">Nenhum vídeo enviado ainda.</p>
+    {% endfor %}
+
+</section>
+</div>
 
 <script src="{% static 'js/tema.js' %}"></script>
 
 <script>
-// ====================== CARREGAR VÍDEOS ======================
-function carregarVideos() {
-    const container = document.getElementById("videos-dinamicos");
-    const videos = JSON.parse(localStorage.getItem("videos")) || [];
-    container.innerHTML = "";
 
-    videos.forEach(v => {
-        const card = document.createElement("a");
-        card.href = "{% url 'AddVideo' %}";  // altere para a view correta
-        card.classList.add("athlete-card");
-
-        card.innerHTML = `
-            <span class="badge novo">Novo</span>
-            <video controls class="video-player">
-                <source src="${v.url}" type="${v.tipo}">
-                Seu navegador não suporta vídeos.
-            </video>
-            <div class="athlete-info">
-                <h3>${v.nome}</h3>
-                <p>${v.esporte} - ${v.regiao}</p>
-                <div class="actions">
-                    <input type="checkbox" id="like_${v.id}" class="like-checkbox">
-                    <label for="like_${v.id}" class="like-btn">
-                        <i class="fa-solid fa-thumbs-up"></i>
-                    </label>
-                    <span class="like-count" data-like-id="like_${v.id}">
-                        ${v.likes || 0}
-                    </span>
-                    <button class="chat-btn">
-                        <i class="fa-solid fa-comment"></i>
-                    </button>
-                </div>
-            </div>
-        `;
-
-        container.appendChild(card);
-    });
-
-    ativarSistemaDeLikes();
+// ====================  ABRIR CARD  ====================
+function abrirCard(id) {
+    window.location.href = "/card/" + id + "/";
 }
 
-// ====================== SISTEMA DE LIKES ======================
-function ativarSistemaDeLikes() {
-    document.querySelectorAll(".like-checkbox").forEach(checkbox => {
-        const id = checkbox.id;
-        const countElement = document.querySelector(`.like-count[data-like-id="${id}"]`);
 
-        let estado = localStorage.getItem(id + "_state");
-        let count = parseInt(localStorage.getItem(id + "_count")) || parseInt(countElement.textContent);
+// ====================  SISTEMA DE LIKE (TOGGLE + AZUL)  ====================
+function darLike(videoId, btn) {
 
-        if (estado === "liked") {
-            checkbox.checked = true;
-            checkbox.nextElementSibling.classList.add("liked");
+    fetch(`/like/${videoId}/`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
         }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.likes !== undefined) {
 
-        checkbox.addEventListener("change", () => {
-            if (checkbox.checked) {
-                count++;
-                localStorage.setItem(id + "_state", "liked");
-                checkbox.nextElementSibling.classList.add("liked");
+            // Atualiza número
+            const count = btn.parentElement.querySelector(".like-count");
+            count.textContent = data.likes;
+
+            // alterna cor azul
+            if (data.user_liked) {
+                btn.classList.add("liked");
             } else {
-                count--;
-                localStorage.setItem(id + "_state", "unliked");
-                checkbox.nextElementSibling.classList.remove("liked");
+                btn.classList.remove("liked");
             }
-
-            countElement.textContent = count;
-            localStorage.setItem(id + "_count", count);
-        });
+        }
     });
 }
 
-// Carregar vídeos ao abrir a página
-carregarVideos();
+
+// ====================  FILTROS AUTOMÁTICOS  ====================
+document.getElementById("filtro-regiao").addEventListener("change", () => {
+    document.getElementById("form-filtros").submit();
+});
+
+document.getElementById("filtro-esporte").addEventListener("change", () => {
+    document.getElementById("form-filtros").submit();
+});
+
+document.getElementById("filtro-nome").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") document.getElementById("form-filtros").submit();
+});
+
 </script>
 
 </body>
