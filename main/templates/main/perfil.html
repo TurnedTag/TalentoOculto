@@ -5,33 +5,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Perfil - Talento Oculto</title>
+
 <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
 <link rel="stylesheet" href="{% static 'css/tema.css' %}">
-
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
+
 <body>
 
-<!-- Overlay do menu -->
 <input type="checkbox" id="menu-toggle">
 <div class="overlay"></div>
 
 <header>
-
-    <!-- 🔙 Botão de Voltar -->
     <a href="{% url 'paginaPrincipal' %}" class="back-btn">
         <i class="fa-solid fa-arrow-left"></i> Voltar
     </a>
 
     <h1>Perfil</h1>
-    
+
     <div class="header-right">
         <label for="menu-toggle" class="menu-icon">&#9776;</label>
     </div>
 </header>
 
-<!-- Menu lateral -->
 <nav class="side-menu">
     <label for="menu-toggle" class="close-menu">×</label>
     <ul>
@@ -45,32 +41,64 @@
     <div class="profile-card">
 
         <div class="profile-header">
-            <img src="{% static 'img/LogoTalentoOculto.jpeg' %}" alt="Foto do Usuário">
-            <h2>João Silva</h2>
-            <p>@joaosilva</p>
+
+            {% if user.foto %}
+            <img src="{{ user.foto.url }}" alt="Foto do Usuário">
+            {% else %}
+            <img src="{% static 'img/LogoTalentoOculto.jpeg' %}" alt="Foto padrão">
+            {% endif %}
+
+            <h2>{{ user.nome }}</h2>
+            <p>@{{ user.nome|slugify }}</p>
         </div>
 
         <div class="profile-sections">
 
             <div class="profile-info">
                 <h3>Informações</h3>
-                <ul>
-                    <li><i class="fa-solid fa-envelope"></i> joao@email.com</li>
-                    <li><i class="fa-solid fa-futbol"></i> Modalidade: Futebol</li>
-                    <li><i class="fa-solid fa-map-marker-alt"></i> Região: Sudeste</li>
-                </ul>
-            </div>
 
-            <div class="profile-stats">
-                <h3>Estatísticas</h3>
                 <ul>
-                    <li><i class="fa-solid fa-video"></i> Vídeos enviados: 12</li>
-                    <li><i class="fa-solid fa-thumbs-up"></i> Curtidas totais: 340</li>
-                </ul>
-            </div>
+                    <li><i class="fa-solid fa-envelope"></i> {{ user.email }}</li>
 
-            <div class="profile-actions">
-                <button class="edit-btn">Editar Perfil</button>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        Tipo de Conta:
+                        <strong>
+                            {% if user.modalidade %}
+                                Atleta
+                            {% else %}
+                                Agente
+                            {% endif %}
+                        </strong>
+                    </li>
+
+                    {% if user.modalidade %}
+                    <li>
+                        <i class="fa-solid fa-futbol"></i>
+                        Modalidade: {{ user.modalidade }}
+                    </li>
+                    {% endif %}
+
+                    {% if user.area_atuacao %}
+                    <li>
+                        <i class="fa-solid fa-briefcase"></i>
+                        Área de atuação: {{ user.area_atuacao }}
+                    </li>
+                    {% endif %}
+
+                    <li>
+                        <i class="fa-solid fa-map-marker-alt"></i>
+                        Região: {{ user.regiao }}
+                    </li>
+
+                    {% if user.descricao %}
+                    <li>
+                        <i class="fa-solid fa-comment"></i>
+                        <strong>Descrição:</strong> {{ user.descricao }}
+                    </li>
+                    {% endif %}
+
+                </ul>
             </div>
 
         </div>

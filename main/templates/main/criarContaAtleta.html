@@ -4,14 +4,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Criar Conta - Talento Oculto</title>
+<title>Criar Conta - Atleta</title>
 
 <link rel="stylesheet" href="{% static 'css/criarContaAtleta.css' %}">
 <link rel="stylesheet" href="{% static 'css/tema.css' %}">
-
-<!-- Font Awesome -->
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
 
 <body>
@@ -25,47 +22,34 @@
 
 <section class="form-container">
 
-    <form class="register-card">
-
+    <form class="register-card" method="POST" enctype="multipart/form-data" action="{% url 'criarContaAtleta' %}">
+        {% csrf_token %}
         <h2>Informações do Atleta</h2>
 
-        <!-- Foto -->
-        <div class="photo-upload">
-            <label for="foto">
-                <img src="{% static 'img/placeholderUser.png' %}" id="preview">
-                <p><i class="fa-solid fa-camera"></i> Adicionar Foto</p>
-            </label>
-            <input type="file" id="foto" accept="image/*">
-        </div>
+        {% if erro %}
+            <p style="color: red; font-weight: bold; text-align:center; margin-bottom: 10px;">
+                {{ erro }}
+            </p>
+        {% endif %}
 
-        <!-- Nome -->
         <div class="input-box">
             <label>Nome Completo</label>
-            <input type="text" placeholder="Ex: João Silva" required>
+            <input type="text" name="nome" placeholder="Ex: João Silva" required>
         </div>
 
-        <!-- Usuário -->
-        <div class="input-box">
-            <label>Nome de Usuário</label>
-            <input type="text" placeholder="@usuario" required>
-        </div>
-
-        <!-- Email -->
         <div class="input-box">
             <label>Email</label>
-            <input type="email" placeholder="exemplo@email.com" required>
+            <input type="email" name="email" placeholder="exemplo@email.com" required>
         </div>
 
-        <!-- Senha -->
         <div class="input-box">
             <label>Senha</label>
-            <input type="password" placeholder="Digite uma senha forte" required>
+            <input type="password" name="senha" placeholder="Digite uma senha forte" required>
         </div>
 
-        <!-- Modalidade -->
         <div class="input-box">
             <label>Modalidade</label>
-            <select required>
+            <select name="modalidade" required>
                 <option value="">Selecione...</option>
                 <option>Futebol</option>
                 <option>Basquete</option>
@@ -75,10 +59,9 @@
             </select>
         </div>
 
-        <!-- Região -->
         <div class="input-box">
             <label>Região</label>
-            <select required>
+            <select name="regiao" required>
                 <option value="">Selecione...</option>
                 <option>Norte</option>
                 <option>Nordeste</option>
@@ -88,13 +71,11 @@
             </select>
         </div>
 
-        <button class="create-btn">Criar Conta</button>
+        <button class="create-btn" type="submit">Criar Conta</button>
 
     </form>
 
 </section>
-
-<script src="{% static 'js/tema.js' %}"></script>
 
 </body>
 </html>
