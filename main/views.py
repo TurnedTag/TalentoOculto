@@ -87,7 +87,6 @@ def perfil(request):
     user_id = request.session.get("user_id")
 
     user = None
-
     if user_type == "atleta":
         user = Atleta.objects.get(id=user_id)
     elif user_type == "agente":
@@ -139,9 +138,7 @@ def criarContaAtleta(request):
         regiao = request.POST.get("regiao")
         foto = request.FILES.get("foto")
 
-        # -------------------------------
         # Validação: email já existe?
-        # -------------------------------
         if Atleta.objects.filter(email=email).exists() or Agente.objects.filter(email=email).exists():
             return render(request, 'main/criarContaAtleta.html', {
                 "erro": "Este e-mail já está cadastrado em uma conta."
@@ -175,9 +172,7 @@ def criarContaAgente(request):
         descricao = request.POST.get("descricao")
         foto = request.FILES.get("foto")
 
-        # -------------------------------
         # Validação: email já existe?
-        # -------------------------------
         if Atleta.objects.filter(email=email).exists() or Agente.objects.filter(email=email).exists():
             return render(request, 'main/criarContaAgente.html', {
                 "erro": "Este e-mail já está cadastrado em uma conta."

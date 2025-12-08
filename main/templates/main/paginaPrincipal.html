@@ -2,27 +2,113 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Vitrine de Atletas</title>
 
-<link rel="stylesheet" href="{% static 'css/paginaPrincipal.css' %}">
 <link rel="stylesheet" href="{% static 'css/tema.css' %}">
+<link rel="stylesheet" href="{% static 'css/paginaPrincipal2.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
 <body>
 
+<!-- checkbox deve estar no nível de body -->
 <input type="checkbox" id="menu-toggle">
+
+<!-- overlay também deve ser irmão do checkbox (para o selector ~ funcionar) -->
 <div class="overlay"></div>
 
-<header>
-    <h1>Vitrine de Atletas</h1>
-    <div class="header-right">
-        <a href="{% url 'AddVideo' %}" class="add-video-btn">Adicionar Vídeo</a>
-        <label for="menu-toggle" class="menu-icon">&#9776;</label>
-    </div>
-</header>
+<!-- container ENVOLVENDO header, filtros e grid -->
+<div class="container">
 
+    <header>
+        <h1>Vitrine de Atletas</h1>
+        <div class="header-right">
+            <a href="{% url 'AddVideo' %}" class="add-video-btn">Adicionar Vídeo</a>
+            <!-- label aqui referencia o checkbox -->
+            <label for="menu-toggle" class="menu-icon" aria-label="Abrir menu">&#9776;</label>
+        </div>
+    </header>
+
+    <!-- menu lateral fica FORA do container (irmão do checkbox) -->
+    <!-- (mantivemos o nav abaixo do container para ficar também como filho direto de body) -->
+
+    <!-- ====================  FILTROS  ==================== -->
+    <section class="filters">
+        <form method="get" class="filter-form" id="form-filtros">
+
+            <!-- Busca -->
+            <input type="text"
+                   name="nome"
+                   placeholder="Buscar atleta..."
+                   class="search-bar"
+                   value="{{ request.GET.nome }}"
+                   id="filtro-nome">
+
+            <!-- Regiões -->
+            <select name="regiao" id="filtro-regiao">
+                <option value="All">Todas as Regiões</option>
+                <option value="Norte" {% if request.GET.regiao == "Norte" %}selected{% endif %}>Norte</option>
+                <option value="Nordeste" {% if request.GET.regiao == "Nordeste" %}selected{% endif %}>Nordeste</option>
+                <option value="Sudeste" {% if request.GET.regiao == "Sudeste" %}selected{% endif %}>Sudeste</option>
+                <option value="Sul" {% if request.GET.regiao == "Sul" %}selected{% endif %}>Sul</option>
+                <option value="Centro-Oeste" {% if request.GET.regiao == "Centro-Oeste" %}selected{% endif %}>Centro-Oeste</option>
+            </select>
+
+            <!-- Esportes -->
+            <select name="esporte" id="filtro-esporte">
+                <option value="All">Todos os Esportes</option>
+                <option value="Futebol" {% if request.GET.esporte == "Futebol" %}selected{% endif %}>Futebol</option>
+                <option value="Basquete" {% if request.GET.esporte == "Basquete" %}selected{% endif %}>Basquete</option>
+                <option value="Vôlei" {% if request.GET.esporte == "Vôlei" %}selected{% endif %}>Vôlei</option>
+                <option value="Tênis" {% if request.GET.esporte == "Tênis" %}selected{% endif %}>Tênis</option>
+            </select>
+
+        </form>
+    </section>
+
+    <!-- ====================  GRID DE VÍDEOS  ==================== -->
+    <section class="athlete-grid">
+        {% for v in videos %}
+        <div class="athlete-card">
+
+            <span class="badge novo">Novo</span>
+
+            <video controls class="video-player" onclick="event.stopPropagation();">
+                <source src="{{ v.arquivo.url }}" type="video/mp4">
+            </video>
+
+            <div class="athlete-info" onclick="abrirCard('{{ v.id|default:0 }}')">
+
+                <h3>{{ v.nome }}</h3>
+                <p>{{ v.esporte }} - {{ v.regiao }}</p>
+
+                <div class="actions" onclick="event.stopPropagation();">
+
+                    <button class="like-btn {% if v.user_liked %}liked{% endif %}"
+                            onclick="darLike('{{ v.id|default:0 }}', this)">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <span class="like-count">{{ v.likes }}</span>
+
+                    <button class="chat-btn">
+                        <i class="fa-solid fa-comment"></i>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+        {% empty %}
+            <p style="text-align:center;">Nenhum vídeo enviado ainda.</p>
+        {% endfor %}
+    </section>
+
+</div> <!-- fecha .container -->
+
+<!-- nav deve ser IRMÃO do checkbox (não dentro do container) -->
 <nav class="side-menu">
     <label for="menu-toggle" class="close-menu">×</label>
     <ul>
@@ -32,91 +118,18 @@
     </ul>
 </nav>
 
-<!-- ====================  FILTROS AUTOMÁTICOS  ==================== -->
-<section class="filters">
-    <form method="get" class="filter-form" id="form-filtros">
-
-        <input type="text" name="nome" placeholder="Buscar atleta..." class="search-bar"
-               value="{{ request.GET.nome }}" id="filtro-nome">
-
-        <select name="regiao" id="filtro-regiao">
-            <option value="All">Todas as Regiões</option>
-            <option value="Norte" {% if request.GET.regiao == "Norte" %}selected{% endif %}>Norte</option>
-            <option value="Nordeste" {% if request.GET.regiao == "Nordeste" %}selected{% endif %}>Nordeste</option>
-            <option value="Sudeste" {% if request.GET.regiao == "Sudeste" %}selected{% endif %}>Sudeste</option>
-            <option value="Sul" {% if request.GET.regiao == "Sul" %}selected{% endif %}>Sul</option>
-            <option value="Centro-Oeste" {% if request.GET.regiao == "Centro-Oeste" %}selected{% endif %}>Centro-Oeste</option>
-        </select>
-
-        <select name="esporte" id="filtro-esporte">
-            <option value="All">Todos os Esportes</option>
-            <option value="Futebol" {% if request.GET.esporte == "Futebol" %}selected{% endif %}>Futebol</option>
-            <option value="Basquete" {% if request.GET.esporte == "Basquete" %}selected{% endif %}>Basquete</option>
-            <option value="Vôlei" {% if request.GET.esporte == "Vôlei" %}selected{% endif %}>Vôlei</option>
-            <option value="Tênis" {% if request.GET.esporte == "Tênis" %}selected{% endif %}>Tênis</option>
-        </select>
-
-        <!-- botão removido -->
-    </form>
-</section>
-
-<div class="container">
-<section class="athlete-grid">
-
-    {% for v in videos %}
-    <div class="athlete-card">
-
-        <span class="badge novo">Novo</span>
-
-        <video controls class="video-player" onclick="event.stopPropagation();">
-            <source src="{{ v.arquivo.url }}" type="video/mp4">
-        </video>
-
-        <div class="athlete-info"
-             onclick="abrirCard('{{ v.id }}')">
-
-            <h3>{{ v.nome }}</h3>
-            <p>{{ v.esporte }} - {{ v.regiao }}</p>
-
-            <div class="actions" onclick="event.stopPropagation();">
-
-                <!-- LIKE COM CORES -->
-                <button class="like-btn {% if v.user_liked %}liked{% endif %}"
-                        onclick="darLike({{ v.id }}, this)">
-                    <i class="fa-solid fa-thumbs-up"></i>
-                </button>
-
-                <span class="like-count">{{ v.likes }}</span>
-
-                <button class="chat-btn">
-                    <i class="fa-solid fa-comment"></i>
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-    {% empty %}
-        <p style="text-align:center;">Nenhum vídeo enviado ainda.</p>
-    {% endfor %}
-
-</section>
-</div>
-
 <script src="{% static 'js/tema.js' %}"></script>
 
 <script>
-
-// ====================  ABRIR CARD  ====================
+// abrir card
 function abrirCard(id) {
+    if (!id || id === 0) return;
     window.location.href = "/card/" + id + "/";
 }
 
-
-// ====================  SISTEMA DE LIKE (TOGGLE + AZUL)  ====================
+// like ajax
 function darLike(videoId, btn) {
-
+    if (!videoId || videoId === 0) return;
     fetch(`/like/${videoId}/`, {
         method: "POST",
         headers: {
@@ -125,36 +138,23 @@ function darLike(videoId, btn) {
     })
     .then(res => res.json())
     .then(data => {
-        if (data.likes !== undefined) {
-
-            // Atualiza número
-            const count = btn.parentElement.querySelector(".like-count");
-            count.textContent = data.likes;
-
-            // alterna cor azul
-            if (data.user_liked) {
-                btn.classList.add("liked");
-            } else {
-                btn.classList.remove("liked");
-            }
-        }
+        if (!data) return;
+        const count = btn.parentElement.querySelector(".like-count");
+        count.textContent = data.likes;
+        if (data.user_liked) btn.classList.add("liked"); else btn.classList.remove("liked");
     });
 }
 
-
-// ====================  FILTROS AUTOMÁTICOS  ====================
+// filtros auto submit
 document.getElementById("filtro-regiao").addEventListener("change", () => {
     document.getElementById("form-filtros").submit();
 });
-
 document.getElementById("filtro-esporte").addEventListener("change", () => {
     document.getElementById("form-filtros").submit();
 });
-
 document.getElementById("filtro-nome").addEventListener("keypress", function(e) {
     if (e.key === "Enter") document.getElementById("form-filtros").submit();
 });
-
 </script>
 
 </body>
