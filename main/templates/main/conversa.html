@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chat - Conversa</title>
+
+<link rel="stylesheet" href="{% static 'css/tema.css' %}">
+<link rel="stylesheet" href="{% static 'css/conversa.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+
+<body>
+
+<header>
+    <a href="{% url 'paginaPrincipal' %}" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+    <h1>Conversa com Atleta</h1>
+    <div style="width:70px;"></div>
+</header>
+
+<div class="chat-container">
+
+    <div class="messages" id="messages">
+        {% for m in mensagens %}
+            <div class="message {% if m.usuario_tipo == 'agente' %}user{% else %}other{% endif %}">
+                {{ m.texto }}
+                <span class="time">{{ m.criado_em|date:"H:i" }}</span>
+            </div>
+        {% empty %}
+            <!-- Nenhuma mensagem inicial -->
+        {% endfor %}
+    </div>
+
+    <!-- Formulário para enviar mensagem -->
+    <form method="POST" id="chat-form" class="chat-input-container">
+        {% csrf_token %}
+        <input type="text" name="mensagem" id="chat-input" placeholder="Digite uma mensagem..." autocomplete="off">
+        <button type="submit" id="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
+    </form>
+
+</div>
+
+<script src="{% static 'js/tema.js' %}"></script>
+
+<script>
+// Auto scroll para o final ao carregar a página
+const messagesContainer = document.getElementById('messages');
+messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+// Impede envio vazio
+const chatForm = document.getElementById('chat-form');
+const chatInput = document.getElementById('chat-input');
+
+chatForm.addEventListener('submit', (e) => {
+    if (!chatInput.value.trim()) e.preventDefault();
+});
+</script>
+
+</body>
+</html>

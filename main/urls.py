@@ -12,4 +12,6 @@ urlpatterns = [
     path('criarContaAgente/', views.criarContaAgente, name='criarContaAgente'),
     path("card/<int:id>/", views.card, name="card"),
     path("like/<int:video_id>/", views.like_video, name="like_video"),
+    path("conversa/<int:video_id>/", views.conversa, name="conversa"),
+    path('chats/', views.chats, name='chats'),
 ]

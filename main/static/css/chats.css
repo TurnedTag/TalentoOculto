@@ -1,0 +1,152 @@
+/* ===========================
+       CONVERSA - LISTA DE CHATS
+=========================== */
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* HEADER */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* botão à esquerda, placeholder à direita */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: var(--header-bg);
+    color: var(--text);
+    padding: 0 20px;
+    z-index: 10;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+/* ===========================
+       BOTÃO VOLTAR NOVO
+=========================== */
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--card-bg);      /* mesmo fundo dos cards */
+    color: var(--text);              /* cor do texto */
+    border: 2px solid var(--card-border); /* borda igual ao card */
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-btn i {
+    font-size: 18px;
+}
+
+.back-btn:hover {
+    background: var(--bg-card-hover, var(--card-bg-hover, var(--card-bg))); /* leve alteração se houver hover definido no tema */
+    transform: translateX(-3px);
+}
+
+
+/* Título centralizado */
+header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+}
+
+/* Placeholder para centralização do título */
+header div {
+    width: 70px; /* mesmo tamanho do botão voltar */
+}
+
+/* LISTA DE CHATS */
+.chat-list-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Card clicável */
+.chat-card {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background: var(--card-bg);
+    color: var(--text);
+    padding: 15px 20px;
+    border-radius: 16px;
+    border: 2px solid var(--card-border);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    text-decoration: none;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.chat-card:hover {
+    background: var(--bg-card-hover, var(--card-bg)); /* se houver hover definido no tema.css */
+    transform: translateY(-2px);
+}
+
+/* Info do chat */
+.chat-card .chat-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.chat-card .chat-info h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.chat-card .chat-info p {
+    font-size: 14px;
+    opacity: 0.7;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* RESPONSIVO */
+@media (max-width: 650px) {
+    header {
+        height: 60px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    .back-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+
+    .chat-list-container {
+        padding: 0 10px;
+    }
+
+    .chat-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 12px 15px;
+    }
+
+    .chat-card .chat-info p {
+        max-width: 100%;
+    }
+}

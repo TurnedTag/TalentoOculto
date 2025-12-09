@@ -9,7 +9,7 @@
     --header-bg: #414040;
     --menu-bg: #4a4a4a;
     --text: #1a1a1a;
-    --card-border: #dcdcdc;x'
+    --card-border: #dcdcdc;
 }
 
 /* Tema Escuro */
@@ -37,29 +37,50 @@ body {
 }
 
 /* ===========================
-      HEADER
+      HEADER CENTRALIZADO
 =========================== */
 header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between; /* mantém botão à esquerda e placeholder à direita */
     background: var(--header-bg);
     color: var(--text);
     padding: 15px 30px;
     position: sticky;
     top: 0;
     z-index: 10;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 
 header h1 {
     font-size: 24px;
+    text-align: center;
+    flex: 1; /* faz o título ocupar o espaço central */
 }
 
-.header-right {
+/* Botão voltar */
+.header-back-btn {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 5px;
+    padding: 8px 15px;
+    background: #000; /* botão preto */
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
 }
+
+.header-back-btn:hover {
+    background: #222;
+}
+
+/* Placeholder à direita do título para manter centralização */
+header div {
+    width: 70px; /* mesmo tamanho do botão voltar */
+}
+
 
 .menu-icon {
     font-size: 24px;

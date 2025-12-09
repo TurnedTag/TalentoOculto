@@ -1,0 +1,194 @@
+/* ===========================
+      CONVERSA - CHAT
+=========================== */
+
+/* Evita scroll horizontal e define fundo */
+body {
+    background: var(--bg);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    margin: 0;
+}
+
+/* ===========================
+           HEADER
+=========================== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--header-bg);
+    color: var(--text);
+    padding: 15px 20px;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-size: 20px;
+    text-align: center;
+    flex: 1;
+    margin: 0;
+}
+
+/* Placeholder para centralizar título */
+header div {
+    width: 70px;
+}
+
+/* ===========================
+           BOTÃO VOLTAR
+=========================== */
+.back-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: var(--card-bg);            /* igual ao botão da lista de chats */
+    color: var(--text);                     /* cor do texto do tema */
+    border: 2px solid var(--card-border);   /* borda igual ao card */
+    border-radius: 10px;                     /* mesmo arredondamento */
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-btn i {
+    font-size: 18px;
+}
+
+.back-btn:hover {
+    background: var(--bg-card-hover, var(--card-bg)); /* hover igual lista de chats */
+    transform: translateX(-3px);                      /* leve deslocamento */
+}
+
+/* ===========================
+       CONTAINER DE CHAT
+=========================== */
+.chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.1); /* transparente bonito */
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);           /* efeito vidro fosco */
+    box-sizing: border-box;
+}
+
+/* ===========================
+           MENSAGENS
+=========================== */
+.messages {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.message {
+    max-width: 80%;
+    padding: 10px 15px;
+    border-radius: 15px;
+    position: relative;
+    word-wrap: break-word;
+    line-height: 1.4;
+    font-size: 14px;
+}
+
+.message.user {
+    background: #007bff;
+    color: #fff;
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+}
+
+.message.other {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text);
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+}
+
+.message .time {
+    font-size: 10px;
+    opacity: 0.6;
+    margin-top: 5px;
+    display: block;
+    text-align: right;
+}
+
+/* ===========================
+          INPUT DE CHAT
+=========================== */
+.chat-input-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+#chat-input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 14px;
+    transition: 0.3s;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+#chat-input:focus {
+    border-color: var(--accent, #007bff);
+    box-shadow: 0 0 5px rgba(0,123,255,0.3);
+}
+
+#send-btn {
+    padding: 0 15px;
+    border: none;
+    border-radius: 50%;
+    background: var(--accent, #007bff);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+#send-btn:hover {
+    background: #0056b3;
+}
+
+/* ===========================
+          RESPONSIVO
+=========================== */
+@media (max-width: 650px) {
+    .chat-container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 18px;
+    }
+
+    .back-btn {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+}

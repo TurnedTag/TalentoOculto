@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,40 +12,25 @@
 </head>
 <body>
 
-<!-- checkbox deve estar no nível de body -->
 <input type="checkbox" id="menu-toggle">
-
-<!-- overlay também deve ser irmão do checkbox (para o selector ~ funcionar) -->
 <div class="overlay"></div>
 
-<!-- container ENVOLVENDO header, filtros e grid -->
 <div class="container">
 
     <header>
         <h1>Vitrine de Atletas</h1>
         <div class="header-right">
             <a href="{% url 'AddVideo' %}" class="add-video-btn">Adicionar Vídeo</a>
-            <!-- label aqui referencia o checkbox -->
             <label for="menu-toggle" class="menu-icon" aria-label="Abrir menu">&#9776;</label>
         </div>
     </header>
 
-    <!-- menu lateral fica FORA do container (irmão do checkbox) -->
-    <!-- (mantivemos o nav abaixo do container para ficar também como filho direto de body) -->
-
-    <!-- ====================  FILTROS  ==================== -->
+    <!-- FILTROS -->
     <section class="filters">
         <form method="get" class="filter-form" id="form-filtros">
+            <input type="text" name="nome" placeholder="Buscar atleta..." class="search-bar"
+                   value="{{ request.GET.nome }}" id="filtro-nome">
 
-            <!-- Busca -->
-            <input type="text"
-                   name="nome"
-                   placeholder="Buscar atleta..."
-                   class="search-bar"
-                   value="{{ request.GET.nome }}"
-                   id="filtro-nome">
-
-            <!-- Regiões -->
             <select name="regiao" id="filtro-regiao">
                 <option value="All">Todas as Regiões</option>
                 <option value="Norte" {% if request.GET.regiao == "Norte" %}selected{% endif %}>Norte</option>
@@ -55,7 +40,6 @@
                 <option value="Centro-Oeste" {% if request.GET.regiao == "Centro-Oeste" %}selected{% endif %}>Centro-Oeste</option>
             </select>
 
-            <!-- Esportes -->
             <select name="esporte" id="filtro-esporte">
                 <option value="All">Todos os Esportes</option>
                 <option value="Futebol" {% if request.GET.esporte == "Futebol" %}selected{% endif %}>Futebol</option>
@@ -63,57 +47,49 @@
                 <option value="Vôlei" {% if request.GET.esporte == "Vôlei" %}selected{% endif %}>Vôlei</option>
                 <option value="Tênis" {% if request.GET.esporte == "Tênis" %}selected{% endif %}>Tênis</option>
             </select>
-
         </form>
     </section>
 
-    <!-- ====================  GRID DE VÍDEOS  ==================== -->
+    <!-- GRID DE VÍDEOS -->
     <section class="athlete-grid">
         {% for v in videos %}
         <div class="athlete-card">
-
-            <span class="badge novo">Novo</span>
-
-            <video controls class="video-player" onclick="event.stopPropagation();">
+            <video controls class="video-player" muted onclick="event.stopPropagation();">
                 <source src="{{ v.arquivo.url }}" type="video/mp4">
             </video>
 
             <div class="athlete-info" onclick="abrirCard('{{ v.id|default:0 }}')">
-
                 <h3>{{ v.nome }}</h3>
                 <p>{{ v.esporte }} - {{ v.regiao }}</p>
 
                 <div class="actions" onclick="event.stopPropagation();">
-
                     <button class="like-btn {% if v.user_liked %}liked{% endif %}"
                             onclick="darLike('{{ v.id|default:0 }}', this)">
                         <i class="fa-solid fa-thumbs-up"></i>
                     </button>
-
                     <span class="like-count">{{ v.likes }}</span>
 
-                    <button class="chat-btn">
+                    <!-- BOTÃO DE CONVERSA -->
+                    <button class="chat-btn" data-video-id="{{ v.id }}">
                         <i class="fa-solid fa-comment"></i>
                     </button>
-
                 </div>
-
             </div>
-
         </div>
         {% empty %}
             <p style="text-align:center;">Nenhum vídeo enviado ainda.</p>
         {% endfor %}
     </section>
 
-</div> <!-- fecha .container -->
+</div> <!-- fecha container -->
 
-<!-- nav deve ser IRMÃO do checkbox (não dentro do container) -->
+<!-- MENU LATERAL -->
 <nav class="side-menu">
     <label for="menu-toggle" class="close-menu">×</label>
     <ul>
         <li><a href="{% url 'perfil' %}">Perfil</a></li>
         <li><a href="{% url 'configuracoes' %}">Configurações</a></li>
+        <li><a href="{% url 'chats' %}">Chats</a></li> <!-- NOVO item de chats -->
         <li><a href="{% url 'index' %}">Sair</a></li>
     </ul>
 </nav>
@@ -121,20 +97,16 @@
 <script src="{% static 'js/tema.js' %}"></script>
 
 <script>
-// abrir card
 function abrirCard(id) {
     if (!id || id === 0) return;
     window.location.href = "/card/" + id + "/";
 }
 
-// like ajax
 function darLike(videoId, btn) {
     if (!videoId || videoId === 0) return;
     fetch(`/like/${videoId}/`, {
         method: "POST",
-        headers: {
-            "X-CSRFToken": "{{ csrf_token }}",
-        }
+        headers: { "X-CSRFToken": "{{ csrf_token }}" }
     })
     .then(res => res.json())
     .then(data => {
@@ -154,6 +126,14 @@ document.getElementById("filtro-esporte").addEventListener("change", () => {
 });
 document.getElementById("filtro-nome").addEventListener("keypress", function(e) {
     if (e.key === "Enter") document.getElementById("form-filtros").submit();
+});
+
+// BOTÕES DE CHAT
+document.querySelectorAll(".chat-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const videoId = btn.getAttribute("data-video-id");
+        window.location.href = `/conversa/${videoId}/`;
+    });
 });
 </script>
 

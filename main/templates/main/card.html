@@ -9,9 +9,6 @@
 <!-- Tema global -->
 <link rel="stylesheet" href="{% static 'css/tema.css' %}">
 
-<!-- Mesmo CSS da página principal para manter padronização -->
-<link rel="stylesheet" href="{% static 'css/paginaPrincipal.css' %}">
-
 <!-- CSS exclusivo da página de detalhes -->
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
 
@@ -21,10 +18,11 @@
 <body>
 
 <header>
+    <!-- Botão voltar -->
+    <a href="{% url 'paginaPrincipal' %}" class="header-back-btn">
+        <i class="fa-solid fa-arrow-left"></i> Voltar
+    </a>
     <h1>{{ video.nome }}</h1>
-
-    <!-- Mesmo estilo do botão Add Vídeo -->
-    <a href="{% url 'paginaPrincipal' %}" class="add-video-btn">← Voltar</a>
 </header>
 
 <div class="container">
@@ -32,11 +30,17 @@
 
         <!-- Vídeo -->
         <div class="video-wrapper">
-            <video controls>
-                <source src="{{ video.arquivo.url }}" type="video/mp4">
-            </video>
-        </div>
+    <video id="meuVideo" controls muted>
+        <source src="{{ video.arquivo.url }}" type="video/mp4">
+    </video>
+</div>
 
+<script>
+const video = document.getElementById('meuVideo');
+const btn = document.getElementById('muteBtn');
+
+
+</script>
         <!-- Informações -->
         <div class="info-wrapper">
 

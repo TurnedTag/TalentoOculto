@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_protect
 from .models import Video, Atleta, Agente
+from .models import Mensagem
+from django.utils import timezone
+
+
 
 # -----------------------------------
 # LOGIN
@@ -223,3 +227,46 @@ def like_video(request, video_id):
         return JsonResponse({"likes": video.likes})
 
     return JsonResponse({"error": "Método inválido"}, status=400)
+
+def conversa(request, video_id):
+    video = get_object_or_404(Video, id=video_id)
+    user_type = request.session.get("user_type")
+    user_id = request.session.get("user_id")
+
+    # Envio de nova mensagem
+    if request.method == "POST":
+        texto = request.POST.get("mensagem")
+        if texto and user_type and user_id:
+            Mensagem.objects.create(
+                video=video,
+                usuario_tipo=user_type,
+                usuario_id=user_id,
+                texto=texto,
+                criado_em=timezone.now()
+            )
+        return redirect("conversa", video_id=video.id)
+
+    # Buscar todas as mensagens desse vídeo
+    mensagens = Mensagem.objects.filter(video=video).order_by("criado_em")
+
+    # Renderizar template
+    return render(request, "main/conversa.html", {
+        "video": video,
+        "mensagens": mensagens,
+        "user_type": user_type,
+        "user_id": user_id,
+        "now": timezone.now()  # útil para exibir hora na primeira mensagem
+    })
+
+def chats(request):
+    user_type = request.session.get("user_type")
+    user_id = request.session.get("user_id")
+
+    # Pega todos os vídeos que o usuário participou de alguma mensagem
+    mensagens = Mensagem.objects.filter(usuario_tipo=user_type, usuario_id=user_id)
+    video_ids = mensagens.values_list('video_id', flat=True).distinct()
+    videos = Video.objects.filter(id__in=video_ids)
+
+    return render(request, "main/chats.html", {
+        "videos": videos
+    })
