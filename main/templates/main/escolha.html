@@ -12,18 +12,26 @@
 <body>
 
   <div class="container-escolha">
-    <div class="card" onclick="location.href='{% url 'criarContaAgente' %}'">
+    <div class="card" data-url="{% url 'criarContaAgente' %}">
       <div class="emoji">👔</div>
       <h2>Agente</h2>
     </div>
 
-    <div class="card" onclick="location.href='{% url 'criarContaAtleta' %}'">
+    <div class="card" data-url="{% url 'criarContaAtleta' %}">
       <div class="emoji">⚽</div>
       <h2>Atleta</h2>
     </div>
   </div>
 
   <script src="{% static 'js/tema.js' %}"></script>
+  <script>
+    // Evita erros de onclick em Django com aspas
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('click', () => {
+        window.location.href = card.dataset.url;
+      });
+    });
+  </script>
 
 </body>
 </html>

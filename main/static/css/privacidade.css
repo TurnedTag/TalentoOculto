@@ -1,0 +1,96 @@
+/* =====================================
+      VARIÁVEIS DE TEMA
+===================================== */
+
+/* Tema Claro */
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --header-bg: #000000;
+  --header-text: #ffffff;
+  --footer-bg: #000000;
+  --footer-text: #ffffff;
+  --border-color: #000000;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --text: #f1f1f1;
+  --header-bg: #2b2b2b;
+  --header-text: #f1f1f1;
+  --footer-bg: #2b2b2b;
+  --footer-text: #f1f1f1;
+  --border-color: #f1f1f1;
+}
+
+/* =====================================
+      RESET
+===================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* =====================================
+      CORPO
+===================================== */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* =====================================
+      HEADER
+===================================== */
+header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  text-align: center;
+  padding: 30px 15px;
+}
+
+header h1 {
+  margin-bottom: 5px;
+}
+
+/* =====================================
+      CONTEÚDO
+===================================== */
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 25px;
+}
+
+h2 {
+  border-left: 5px solid var(--border-color);
+  padding-left: 10px;
+}
+
+/* LISTAS */
+ul {
+  padding-left: 20px;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+/* =====================================
+      RODAPÉ
+===================================== */
+footer {
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+}

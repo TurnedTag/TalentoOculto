@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Criar Conta - Agente</title>
 
-<link rel="stylesheet" href="{% static 'css/criarContaAtleta.css' %}">
+<link rel="stylesheet" href="{% static 'css/criarContaAgente.css' %}">
 <link rel="stylesheet" href="{% static 'css/tema.css' %}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 </head>
@@ -49,14 +49,61 @@
 
         <div class="input-box">
             <label>Área de Atuação</label>
-            <select name="area_atuacao" required>
-                <option value="">Selecione...</option>
-                <option>Futebol</option>
-                <option>Basquete</option>
-                <option>Vôlei</option>
-                <option>Multiesportivo</option>
-            </select>
-        </div>
+             <select name="modalidade" required>
+        <option value="">Selecione...</option>
+
+       <option value="Atletismo">Atletismo</option>
+<option value="Badminton">Badminton</option>
+<option value="Basquete">Basquete</option>
+<option value="Basquete 3x3">Basquete 3x3</option>
+<option value="Boxe">Boxe</option>
+<option value="Breakdance">Breaking (Breakdance)</option>
+<option value="Canoagem Slalom">Canoagem Slalom</option>
+<option value="Canoagem Velocidade">Canoagem Velocidade</option>
+<option value="Ciclismo BMX Freestyle">Ciclismo BMX Freestyle</option>
+<option value="Ciclismo BMX Racing">Ciclismo BMX Racing</option>
+<option value="Ciclismo Estrada">Ciclismo de Estrada</option>
+<option value="Ciclismo Pista">Ciclismo de Pista</option>
+<option value="Ciclismo Mountain Bike">Mountain Bike</option>
+<option value="Escalada Esportiva">Escalada Esportiva</option>
+<option value="Esgrima">Esgrima</option>
+<option value="Futebol">Futebol</option>
+<option value="Ginástica Artística">Ginástica Artística</option>
+<option value="Ginástica Rítmica">Ginástica Rítmica</option>
+<option value="Ginástica Trampolim">Ginástica de Trampolim</option>
+<option value="Golfe">Golfe</option>
+<option value="Handebol">Handebol</option>
+<option value="Hipismo Adestramento">Hipismo – Adestramento</option>
+<option value="Hipismo Saltos">Hipismo – Saltos</option>
+<option value="Hipismo Concurso Completo">Hipismo – Concurso Completo</option>
+<option value="Hóquei sobre Grama">Hóquei sobre Grama</option>
+<option value="Judô">Judô</option>
+<option value="Levantamento de Peso">Levantamento de Peso</option>
+<option value="Luta Estilo Livre">Luta – Estilo Livre</option>
+<option value="Luta Greco-Romana">Luta – Greco-Romana</option>
+<option value="Maratona Aquática">Maratona Aquática</option>
+<option value="Nado Artístico">Nado Artístico</option>
+<option value="Natação">Natação</option>
+<option value="Pentatlo Moderno">Pentatlo Moderno</option>
+<option value="Polo Aquático">Polo Aquático</option>
+<option value="Remo">Remo</option>
+<option value="Rugby Sevens">Rugby Sevens</option>
+<option value="Saltos Ornamentais">Saltos Ornamentais</option>
+<option value="Skate">Skate</option>
+<option value="Surfe">Surfe</option>
+<option value="Taekwondo">Taekwondo</option>
+<option value="Tênis">Tênis</option>
+<option value="Tênis de Mesa">Tênis de Mesa</option>
+<option value="Tiro com Arco">Tiro com Arco</option>
+<option value="Tiro Esportivo">Tiro Esportivo</option>
+<option value="Triatlo">Triatlo</option>
+<option value="Vela">Vela</option>
+<option value="Vôlei">Vôlei</option>
+<option value="Vôlei de Praia">Vôlei de Praia</option>
+
+
+    </select>
+</div>
 
         <div class="input-box">
             <label>Região</label>

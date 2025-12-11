@@ -176,6 +176,91 @@ select {
 }
 
 /* ===========================
+   BOTÃO EXCLUIR CONTA
+=========================== */
+.delete-account-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #fff;
+    background: #d9534f;
+    width: 100%;
+    transition: 0.3s;
+}
+
+.delete-account-btn:hover {
+    background: #b52b27;
+}
+
+/* ===========================
+       POPUP DE CONFIRMAÇÃO
+=========================== */
+#confirm-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none; /* invisível por padrão */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#confirm-popup > div {
+    background: var(--bg-card);
+    padding: 30px 25px;
+    border-radius: 14px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+#confirm-popup p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+#confirm-popup .buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+}
+
+#confirm-popup button {
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    min-width: 80px;
+}
+
+#confirm-popup #confirm-yes {
+    background: #d9534f;
+    color: #fff;
+}
+
+#confirm-popup #confirm-yes:hover {
+    background: #b52b27;
+}
+
+#confirm-popup #confirm-no {
+    background: #6c757d;
+    color: #fff;
+}
+
+#confirm-popup #confirm-no:hover {
+    background: #5a6268;
+}
+
+/* ===========================
        RESPONSIVIDADE
 =========================== */
 @media (max-width: 650px) {

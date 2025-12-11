@@ -270,3 +270,12 @@ def chats(request):
     return render(request, "main/chats.html", {
         "videos": videos
     })
+
+def termos(request):
+    return render(request, 'main/termos.html')
+
+def privacidade(request):
+    return render(request, 'main/privacidade.html')
+
+def FAQ(request):
+    return render(request, 'main/FAQ.html')

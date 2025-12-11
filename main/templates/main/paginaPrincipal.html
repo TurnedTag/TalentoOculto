@@ -41,12 +41,58 @@
             </select>
 
             <select name="esporte" id="filtro-esporte">
-                <option value="All">Todos os Esportes</option>
-                <option value="Futebol" {% if request.GET.esporte == "Futebol" %}selected{% endif %}>Futebol</option>
-                <option value="Basquete" {% if request.GET.esporte == "Basquete" %}selected{% endif %}>Basquete</option>
-                <option value="Vôlei" {% if request.GET.esporte == "Vôlei" %}selected{% endif %}>Vôlei</option>
-                <option value="Tênis" {% if request.GET.esporte == "Tênis" %}selected{% endif %}>Tênis</option>
-            </select>
+            <option value="All">Todos os Esportes</option>
+
+            <option value="Atletismo" {% if request.GET.esporte == "Atletismo" %}selected{% endif %}>Atletismo</option>
+            <option value="Badminton" {% if request.GET.esporte == "Badminton" %}selected{% endif %}>Badminton</option>
+            <option value="Basquete" {% if request.GET.esporte == "Basquete" %}selected{% endif %}>Basquete</option>
+            <option value="Basquete 3x3" {% if request.GET.esporte == "Basquete 3x3" %}selected{% endif %}>Basquete 3x3</option>
+            <option value="Boxe" {% if request.GET.esporte == "Boxe" %}selected{% endif %}>Boxe</option>
+            <option value="Breakdance" {% if request.GET.esporte == "Breakdance" %}selected{% endif %}>Breaking (Breakdance)</option>
+            <option value="Canoagem Slalom" {% if request.GET.esporte == "Canoagem Slalom" %}selected{% endif %}>Canoagem Slalom</option>
+            <option value="Canoagem Velocidade" {% if request.GET.esporte == "Canoagem Velocidade" %}selected{% endif %}>Canoagem Velocidade</option>
+            <option value="Ciclismo BMX Freestyle" {% if request.GET.esporte == "Ciclismo BMX Freestyle" %}selected{% endif %}>Ciclismo BMX Freestyle</option>
+            <option value="Ciclismo BMX Racing" {% if request.GET.esporte == "Ciclismo BMX Racing" %}selected{% endif %}>Ciclismo BMX Racing</option>
+            <option value="Ciclismo Estrada" {% if request.GET.esporte == "Ciclismo Estrada" %}selected{% endif %}>Ciclismo de Estrada</option>
+            <option value="Ciclismo Pista" {% if request.GET.esporte == "Ciclismo Pista" %}selected{% endif %}>Ciclismo de Pista</option>
+            <option value="Ciclismo Mountain Bike" {% if request.GET.esporte == "Ciclismo Mountain Bike" %}selected{% endif %}>Mountain Bike</option>
+            <option value="Escalada Esportiva" {% if request.GET.esporte == "Escalada Esportiva" %}selected{% endif %}>Escalada Esportiva</option>
+            <option value="Esgrima" {% if request.GET.esporte == "Esgrima" %}selected{% endif %}>Esgrima</option>
+            <option value="Futebol" {% if request.GET.esporte == "Futebol" %}selected{% endif %}>Futebol</option>
+            <option value="Ginástica Artística" {% if request.GET.esporte == "Ginástica Artística" %}selected{% endif %}>Ginástica Artística</option>
+            <option value="Ginástica Rítmica" {% if request.GET.esporte == "Ginástica Rítmica" %}selected{% endif %}>Ginástica Rítmica</option>
+            <option value="Ginástica Trampolim" {% if request.GET.esporte == "Ginástica Trampolim" %}selected{% endif %}>Ginástica de Trampolim</option>
+            <option value="Golfe" {% if request.GET.esporte == "Golfe" %}selected{% endif %}>Golfe</option>
+            <option value="Handebol" {% if request.GET.esporte == "Handebol" %}selected{% endif %}>Handebol</option>
+            <option value="Hipismo Adestramento" {% if request.GET.esporte == "Hipismo Adestramento" %}selected{% endif %}>Hipismo – Adestramento</option>
+            <option value="Hipismo Saltos" {% if request.GET.esporte == "Hipismo Saltos" %}selected{% endif %}>Hipismo – Saltos</option>
+            <option value="Hipismo Concurso Completo" {% if request.GET.esporte == "Hipismo Concurso Completo" %}selected{% endif %}>Hipismo – Concurso Completo</option>
+            <option value="Hóquei sobre Grama" {% if request.GET.esporte == "Hóquei sobre Grama" %}selected{% endif %}>Hóquei sobre Grama</option>
+            <option value="Judô" {% if request.GET.esporte == "Judô" %}selected{% endif %}>Judô</option>
+            <option value="Levantamento de Peso" {% if request.GET.esporte == "Levantamento de Peso" %}selected{% endif %}>Levantamento de Peso</option>
+            <option value="Luta Estilo Livre" {% if request.GET.esporte == "Luta Estilo Livre" %}selected{% endif %}>Luta – Estilo Livre</option>
+            <option value="Luta Greco-Romana" {% if request.GET.esporte == "Luta Greco-Romana" %}selected{% endif %}>Luta – Greco-Romana</option>
+            <option value="Natação" {% if request.GET.esporte == "Natação" %}selected{% endif %}>Natação</option>
+            <option value="Nado Artístico" {% if request.GET.esporte == "Nado Artístico" %}selected{% endif %}>Nado Artístico</option>
+            <option value="Maratona Aquática" {% if request.GET.esporte == "Maratona Aquática" %}selected{% endif %}>Maratona Aquática</option>
+            <option value="Pentatlo Moderno" {% if request.GET.esporte == "Pentatlo Moderno" %}selected{% endif %}>Pentatlo Moderno</option>
+            <option value="Polo Aquático" {% if request.GET.esporte == "Polo Aquático" %}selected{% endif %}>Polo Aquático</option>
+            <option value="Remo" {% if request.GET.esporte == "Remo" %}selected{% endif %}>Remo</option>
+            <option value="Rugby Sevens" {% if request.GET.esporte == "Rugby Sevens" %}selected{% endif %}>Rugby Sevens</option>
+            <option value="Saltos Ornamentais" {% if request.GET.esporte == "Saltos Ornamentais" %}selected{% endif %}>Saltos Ornamentais</option>
+            <option value="Skate" {% if request.GET.esporte == "Skate" %}selected{% endif %}>Skate</option>
+            <option value="Surfe" {% if request.GET.esporte == "Surfe" %}selected{% endif %}>Surfe</option>
+            <option value="Taekwondo" {% if request.GET.esporte == "Taekwondo" %}selected{% endif %}>Taekwondo</option>
+            <option value="Tênis" {% if request.GET.esporte == "Tênis" %}selected{% endif %}>Tênis</option>
+            <option value="Tênis de Mesa" {% if request.GET.esporte == "Tênis de Mesa" %}selected{% endif %}>Tênis de Mesa</option>
+            <option value="Tiro com Arco" {% if request.GET.esporte == "Tiro com Arco" %}selected{% endif %}>Tiro com Arco</option>
+            <option value="Tiro Esportivo" {% if request.GET.esporte == "Tiro Esportivo" %}selected{% endif %}>Tiro Esportivo</option>
+            <option value="Triatlo" {% if request.GET.esporte == "Triatlo" %}selected{% endif %}>Triatlo</option>
+            <option value="Vela" {% if request.GET.esporte == "Vela" %}selected{% endif %}>Vela</option>
+            <option value="Vôlei" {% if request.GET.esporte == "Vôlei" %}selected{% endif %}>Vôlei</option>
+            <option value="Vôlei de Praia" {% if request.GET.esporte == "Vôlei de Praia" %}selected{% endif %}>Vôlei de Praia</option>
+        </select>
+
         </form>
     </section>
 

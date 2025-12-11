@@ -19,7 +19,6 @@
     --border: #444;
 }
 
-
 /* ---------- ESTILO GLOBAL ---------- */
 * {
     margin:0;
@@ -37,23 +36,39 @@ body {
 /* ---------- HEADER ---------- */
 header {
     display:flex;
-    justify-content:space-between;
     align-items:center;
+    justify-content:center; /* centraliza o título */
     background: var(--header-bg);
     color:white;
     padding:15px 30px;
+    position: relative; /* necessário para posicionar botão voltar */
 }
 
-header h1 { font-size:24px; }
+header h1 {
+    font-size:24px;
+    text-align:center;
+}
 
+/* Botão de voltar ajustado */
 .back-btn {
+    position: absolute; /* posiciona fora do fluxo centralizado */
+    left:30px; /* distância da esquerda */
+    top:50%;
+    transform: translateY(-50%);
     text-decoration:none;
-    color:white;
-    background: var(--button-bg);
+    color:white; /* texto no tema escuro */
+    background: var(--button-bg); /* fundo padrão escuro */
     padding:6px 12px;
     border-radius:6px;
+    border: 2px solid transparent;
+    transition: 0.3s;
 }
-.back-btn:hover { background: var(--button-bg-hover); }
+
+[data-theme="light"] .back-btn {
+    background: white; /* preenchimento branco no tema claro */
+    color: var(--text); /* texto escuro */
+    border: 2px solid #ccc; /* borda discreta */
+}
 
 /* ---------- MAIN ---------- */
 main {
@@ -71,6 +86,7 @@ main {
     max-width:500px;
 }
 
+/* ---------- FORMULÁRIO ---------- */
 .upload-container form label {
     display:block;
     font-weight:600;
@@ -96,6 +112,7 @@ main {
     height:100px;
 }
 
+/* Botão Enviar Vídeo */
 .upload-container form button {
     width:100%;
     padding:12px;
@@ -107,6 +124,7 @@ main {
     font-size:16px;
     font-weight:600;
     cursor:pointer;
+    transition: 0.3s;
 }
 
 .upload-container form button:hover {

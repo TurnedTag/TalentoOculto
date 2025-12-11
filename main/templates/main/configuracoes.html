@@ -1,20 +1,20 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="title_config">Configurações - Talento Oculto</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Configurações - Talento Oculto</title>
 <link rel="stylesheet" href="{% static 'css/configuracoes.css' %}">
 <link rel="stylesheet" href="{% static 'css/tema.css' %}">
 </head>
 <body>
 
 <header>
-    <a href="{% url 'paginaPrincipal' %}" class="back-btn" data-i18n="back_btn">
+    <a href="{% url 'paginaPrincipal' %}" class="back-btn">
         <i class="fa-solid fa-arrow-left"></i> Voltar
     </a>
-    <h1 data-i18n="config_title">Configurações</h1>
+    <h1>Configurações</h1>
 </header>
 
 <main>
@@ -23,19 +23,13 @@
         <div class="profile-sections">
 
             <div class="profile-info">
-                <h3 data-i18n="preferences_title">Preferências</h3>
+                <h3>Preferências</h3>
 
-                <label class="label" data-i18n="theme_label">Tema:</label>
+                <label>Tema:</label>
                 <select id="theme-select">
-                    <option value="light" data-i18n="theme_light">Claro</option>
-                    <option value="dark" data-i18n="theme_dark">Escuro</option>
+                    <option value="light">Claro</option>
+                    <option value="dark">Escuro</option>
                 </select>
-            </div>
-
-            <div class="profile-stats">
-                <h3 data-i18n="account_title">Conta</h3>
-                <button class="edit-btn" data-i18n="change_password_btn">Trocar Senha</button>
-                <button class="change-password-btn" data-i18n="delete_account_btn">Excluir Conta</button>
             </div>
 
         </div>
@@ -44,7 +38,7 @@
 </main>
 
 <script src="{% static 'js/tema.js' %}"></script>
-<!-- Font Awesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"></script>
+
 </body>
 </html>

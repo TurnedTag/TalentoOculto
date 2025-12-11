@@ -14,4 +14,7 @@ urlpatterns = [
     path("like/<int:video_id>/", views.like_video, name="like_video"),
     path("conversa/<int:video_id>/", views.conversa, name="conversa"),
     path('chats/', views.chats, name='chats'),
+    path('termos/', views.termos, name='termos'),          
+    path('privacidade/', views.privacidade, name='privacidade'),  
+    path('FAQ/', views.FAQ, name='FAQ'),    
 ]

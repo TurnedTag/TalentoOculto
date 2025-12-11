@@ -6,19 +6,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{{ video.nome }} - Detalhes</title>
 
-<!-- Tema global -->
 <link rel="stylesheet" href="{% static 'css/tema.css' %}">
-
-<!-- CSS exclusivo da página de detalhes -->
 <link rel="stylesheet" href="{% static 'css/card.css' %}">
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
 
 <header>
-    <!-- Botão voltar -->
     <a href="{% url 'paginaPrincipal' %}" class="header-back-btn">
         <i class="fa-solid fa-arrow-left"></i> Voltar
     </a>
@@ -30,17 +25,11 @@
 
         <!-- Vídeo -->
         <div class="video-wrapper">
-    <video id="meuVideo" controls muted>
-        <source src="{{ video.arquivo.url }}" type="video/mp4">
-    </video>
-</div>
+            <video id="meuVideo" controls muted>
+                <source src="{{ video.arquivo.url }}" type="video/mp4">
+            </video>
+        </div>
 
-<script>
-const video = document.getElementById('meuVideo');
-const btn = document.getElementById('muteBtn');
-
-
-</script>
         <!-- Informações -->
         <div class="info-wrapper">
 
@@ -52,15 +41,16 @@ const btn = document.getElementById('muteBtn');
             <h3>Descrição</h3>
             <p class="descricao">{{ video.descricao }}</p>
 
-            <button class="chat-btn-detalhe">
+            <!-- BOTÃO COM LINK PARA A CONVERSA -->
+            <a href="{% url 'conversa' video.id %}" class="chat-btn-detalhe btn-as-link">
                 <i class="fa-solid fa-comment"></i> Começar conversa
-            </button>
+            </a>
+
         </div>
 
     </div>
 </div>
 
-<!-- Tema (modo claro/escuro) -->
 <script src="{% static 'js/tema.js' %}"></script>
 
 </body>

@@ -1,96 +1,177 @@
-/* Fundo geral */
+/* Usa as variáveis do tema.css automaticamente */
+
+/* ==========================
+      LAYOUT GERAL
+========================== */
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0a1d37, #13315c, #1d63a8);
-    height: 100vh;
+    background: linear-gradient(135deg, var(--bg), var(--bg-card));
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0;
+    font-family: 'Poppins', sans-serif;
+    padding: 0 15px;
+    box-sizing: border-box;
+}
+
+/* ==========================
+          HEADER
+========================== */
+
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--header-bg);
+    padding: 10px 15px; /* menor padding */
+    color: var(--text);
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 20px; /* ligeiramente menor */
+    text-align: center;
+}
+
+/* Botão voltar */
+.back-btn {
+    position: absolute;
+    left: 15px; 
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 12px; /* menor padding */
+    background: #ffffff;
+    color: var(--text);
+    border: 2px solid var(--card-border);
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ==========================
+       FORM CONTAINER
+========================== */
+
+.form-container {
     display: flex;
     justify-content: center;
-    align-items: center;
-}
-
-/* Container central */
-.container {
     width: 100%;
-    max-width: 420px;
-    padding: 20px;
-}
-
-/* Card da página */
-.card {
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 18px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    animation: fadeIn 0.6s ease-in-out;
-}
-
-h2 {
-    text-align: center;
-    margin-bottom: 5px;
-    font-size: 26px;
-    color: #0a1d37;
-}
-
-.subtitle {
-    text-align: center;
-    color: #555;
-    font-size: 14px;
-    margin-bottom: 20px;
-}
-
-/* Inputs */
-label {
-    font-weight: 600;
-    color: #0a1d37;
-}
-
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0 18px 0;
-    border-radius: 12px;
-    border: 1.5px solid #bfc9d6;
-    font-size: 15px;
-}
-
-textarea {
-    height: 110px;
-    resize: none;
-}
-
-/* Botão */
-.btn {
-    width: 100%;
-    padding: 14px;
-    background: #1d63a8;
-    color: white;
-    border: none;
-    border-radius: 14px;
-    font-size: 17px;
-    cursor: pointer;
-    transition: 0.3s;
-    margin-top: 10px;
-}
-
-.btn:hover {
-    background: #174f85;
-}
-
-/* Link de login */
-.login-link {
-    text-align: center;
     margin-top: 15px;
+}
+
+/* Card central */
+.register-card {
+    width: 100%;
+    max-width: 450px; /* um pouco menor */
+    background: var(--bg-card);
+    padding: 20px 25px; /* menor padding */
+    border-radius: 14px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    border: 2px solid var(--card-border);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Título do card */
+.register-card h2 {
+    text-align: center;
+    margin-bottom: 15px; /* menor margem */
+    color: var(--text);
+    font-size: 20px;
+}
+
+/* ==========================
+         INPUTS
+========================== */
+
+.input-box {
+    margin-bottom: 12px; /* menor espaçamento */
+    display: flex;
+    flex-direction: column;
+}
+
+.input-box label {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: var(--text);
+}
+
+.input-box input,
+.input-box select,
+.input-box textarea {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--card-border);
+    outline: none;
     font-size: 14px;
+    background: var(--bg);
+    color: var(--text);
 }
 
-.login-link a {
-    color: #1d63a8;
-    font-weight: bold;
+.input-box textarea {
+    resize: none;
+    height: 80px; /* menor altura */
 }
 
-/* Animação */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); }
-    to   { opacity: 1; transform: translateY(0); }
+/* ==========================
+         BOTÃO
+========================== */
+
+.create-btn {
+    width: 100%;
+    padding: 12px; /* menor padding */
+    background: #007bff;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    font-size: 15px;
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.create-btn:hover {
+    background: #0056b3;
+}
+
+/* ==========================
+         TEXTO FINAL
+========================== */
+
+.login-text {
+    margin-top: 12px; /* menor margem */
+    text-align: center;
+    color: var(--text);
+}
+
+.login-text a {
+    color: #007bff;
+    font-weight: 600;
+}
+
+/* ==========================
+     RESPONSIVIDADE
+========================== */
+
+@media (max-width: 520px) {
+    body {
+        padding: 0 10px;
+    }
+
+    .register-card {
+        padding: 15px 20px;
+    }
+
+    .back-btn {
+        left: 10px;
+        padding: 5px 10px;
+    }
 }

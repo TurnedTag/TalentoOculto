@@ -1,0 +1,139 @@
+/* ===========================
+       BODY
+=========================== */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: var(--bg); /* do tema.css */
+    color: var(--text);
+}
+
+/* ===========================
+       TOPO / HEADER
+=========================== */
+header {
+    background-color: var(--header-bg, #000); /* fallback caso a variável não exista */
+    color: var(--header-text, #fff);
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin-bottom: 5px;
+}
+
+header p {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* ===========================
+       BOTÃO VOLTAR
+=========================== */
+.back-button {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 16px;
+    background-color: var(--header-bg, #000);
+    color: var(--header-text, #fff);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.back-button:hover {
+    background-color: #333;
+    transform: translateY(-2px);
+}
+
+/* ===========================
+       CONTEÚDO PRINCIPAL
+=========================== */
+.container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 25px;
+}
+
+h2 {
+    border-left: 5px solid var(--text);
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 5px;
+    color: var(--text);
+}
+
+/* ===========================
+       LISTAS
+=========================== */
+ul {
+    padding-left: 20px;
+}
+
+li {
+    margin: 5px 0;
+}
+
+/* ===========================
+       RODAPÉ
+=========================== */
+footer {
+    background-color: var(--header-bg, #000);
+    color: var(--header-text, #fff);
+    text-align: center;
+    padding: 15px;
+    margin-top: 30px;
+    font-size: 14px;
+}
+
+/* ===========================
+       FAQ (opcional)
+=========================== */
+.faq-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+
+.faq-title {
+    margin-top: 30px;
+    font-size: 20px;
+    color: var(--text);
+    font-weight: bold;
+    border-left: 5px solid var(--text);
+    padding-left: 10px;
+}
+
+.faq-item {
+    background-color: var(--bg-card, #f9f9f9);
+    margin-top: 15px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--text);
+    transition: transform 0.2s;
+}
+
+.faq-item:hover {
+    transform: scale(1.02);
+}
+
+.faq-item h2 {
+    font-size: 18px;
+}
+
+.faq-item p,
+.faq-item li {
+    font-size: 15px;
+    margin-top: 8px;
+}

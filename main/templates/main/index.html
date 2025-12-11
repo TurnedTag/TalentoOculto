@@ -23,9 +23,9 @@
           Dê visibilidade ao seu talento esportivo e seja descoberto por treinadores, olheiros e clubes em todo o Brasil.
         </p>
         <ul>
-          <li>✅ Gratuito e inclusivo</li>
-          <li>🏅 Múltiplas modalidades esportivas</li>
-          <li>🤝 Conexão direta com profissionais</li>
+          <li>Gratuito e inclusivo</li>
+          <li>Múltiplas modalidades esportivas</li>
+          <li>Conexão direta com profissionais</li>
         </ul>
       </div>
     </div>
@@ -36,7 +36,7 @@
         <h2>Entrar</h2>
         <p>Mostre seu talento esportivo e seja visto por olheiros.</p>
 
-        <!-- Formulário corrigido -->
+        <!-- Formulário -->
         <form action="{% url 'index' %}" method="post">
           {% csrf_token %}
           
@@ -52,10 +52,6 @@
 
           <button type="submit">Entrar</button>
 
-          <div class="forgot-password">
-            <a href="#">Esqueceu a senha?</a>
-          </div>
-
           <!-- Registro -->
           <p class="register-text">Não tem conta? <a href="{% url 'escolha' %}">Crie aqui</a></p>
         </form>
@@ -69,9 +65,9 @@
     <ul>
       <li><a href="#">Sobre</a></li>
       <li><a href="#">Contate a gente</a></li>
-      <li><a href="#">Privacidade</a></li>
-      <li><a href="#">Termos</a></li>
-      <li><a href="#">Ajuda</a></li>
+      <li><a href="{% url 'privacidade' %}">Privacidade</a></li>
+      <li><a href="{% url 'termos' %}">Termos</a></li>
+      <li><a href="{% url 'FAQ' %}">Ajuda</a></li>
     </ul>
     <p>© 2025 Talento Oculto</p>
   </footer>

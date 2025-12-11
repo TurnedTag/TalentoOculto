@@ -1,0 +1,127 @@
+/* ===========================
+       BODY
+=========================== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #ffffff;
+    color: #000000;
+    line-height: 1.6;
+}
+
+/* ===========================
+       TOPO
+=========================== */
+header {
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 15px;
+}
+
+header h1 {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+header p {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+/* ===========================
+       BOTÃO VOLTAR
+=========================== */
+.back-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 18px;
+    background: #000000;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.back-button:hover {
+    background: #333333;
+    transform: translateY(-2px);
+}
+
+/* ===========================
+       CONTAINER PRINCIPAL
+=========================== */
+.faq-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+/* ===========================
+       TÍTULOS DAS SEÇÕES
+=========================== */
+.faq-title {
+    margin-top: 40px;
+    font-size: 20px;
+    color: #000000;
+    font-weight: bold;
+    border-left: 5px solid #000000;
+    padding-left: 12px;
+}
+
+/* ===========================
+       ITENS DE FAQ
+=========================== */
+.faq-item {
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-top: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.faq-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.faq-item h2 {
+    font-size: 18px;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.faq-item p, 
+.faq-item li {
+    font-size: 15px;
+    color: #333333;
+    margin-top: 5px;
+}
+
+/* ===========================
+       LISTAS
+=========================== */
+.faq-item ul {
+    padding-left: 20px;
+    margin-top: 8px;
+}
+
+.faq-item ul li {
+    margin-bottom: 5px;
+}
+
+/* ===========================
+       RODAPÉ
+=========================== */
+footer {
+    text-align: center;
+    background: #000000;
+    color: #ffffff;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 14px;
+}
