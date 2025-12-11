@@ -4,7 +4,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-slbe+^$k^b@-@)5u5r0r3o_skp-*h1iaay-m2)2@pku&2i5vh7"
 DEBUG = True
-ALLOWED_HOSTS = []
+
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -66,8 +70,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
+    'http://127.0.0.1:8000',
     'https://localhost:8000',
+    'https://127.0.0.1:8000',
 ]
 
+# Aumentar limite de upload (opcional)
 DATA_UPLOAD_MAX_MEMORY_SIZE = 1073741824
 FILE_UPLOAD_MAX_MEMORY_SIZE = 1073741824
