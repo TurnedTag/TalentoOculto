@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_protect
 from .models import Video, Atleta, Agente
 from .models import Mensagem
 from django.utils import timezone
+from .models import Video, Like
 
 
 
@@ -211,23 +212,29 @@ def card(request, id):
 # -----------------------------------
 def like_video(request, video_id):
     if request.method == "POST":
-        liked = request.session.get("liked_videos", [])
+        user_type = request.session.get("user_type")
+        user_id = request.session.get("user_id")
         video = get_object_or_404(Video, id=video_id)
 
-        if video_id in liked:
-            video.likes -= 1
-            liked.remove(video_id)
+        # Verifica se o usuário já deu like
+        like = Like.objects.filter(video=video, usuario_tipo=user_type, usuario_id=user_id).first()
+
+        if like:
+            # Remove o like
+            like.delete()
+            user_liked = False
         else:
-            video.likes += 1
-            liked.append(video_id)
+            # Cria novo like
+            Like.objects.create(video=video, usuario_tipo=user_type, usuario_id=user_id)
+            user_liked = True
 
-        video.save()
-        request.session["liked_videos"] = liked
-
-        return JsonResponse({"likes": video.likes})
+        # Retorna JSON com total de likes e status do usuário
+        return JsonResponse({
+            "likes": video.likes.count(),
+            "user_liked": user_liked
+        })
 
     return JsonResponse({"error": "Método inválido"}, status=400)
-
 def conversa(request, video_id):
     video = get_object_or_404(Video, id=video_id)
     user_type = request.session.get("user_type")
@@ -279,3 +286,9 @@ def privacidade(request):
 
 def FAQ(request):
     return render(request, 'main/FAQ.html')
+
+def sobre(request):
+    return render(request, 'main/sobre.html')
+
+def contato(request):
+    return render(request, 'main/contato.html')

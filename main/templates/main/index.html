@@ -63,11 +63,12 @@
   <!-- Footer institucional -->
   <footer class="footer-links">
     <ul>
-      <li><a href="#">Sobre</a></li>
-      <li><a href="#">Contate a gente</a></li>
+      <li><a href="{% url 'sobre' %}">Sobre</a></li>
+      <li><a href="{% url 'contato' %}">Contate a gente</a></li>
       <li><a href="{% url 'privacidade' %}">Privacidade</a></li>
       <li><a href="{% url 'termos' %}">Termos</a></li>
       <li><a href="{% url 'FAQ' %}">Ajuda</a></li>
+
     </ul>
     <p>© 2025 Talento Oculto</p>
   </footer>

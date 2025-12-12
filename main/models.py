@@ -53,10 +53,30 @@ class Video(models.Model):
     descricao = models.TextField()
     arquivo = models.FileField(upload_to='videos/')
     criado_em = models.DateTimeField(auto_now_add=True)
-    likes = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.nome} - {self.esporte}"
+
+
+# -----------------------------
+# NOVO MODELO DE LIKE
+# -----------------------------
+
+class Like(models.Model):
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name="likes")
+    usuario_tipo = models.CharField(max_length=20)  # "atleta" ou "agente"
+    usuario_id = models.IntegerField()
+
+    class Meta:
+        unique_together = ("video", "usuario_tipo", "usuario_id")  # impede like duplicado
+
+    def __str__(self):
+        return f"Like de {self.usuario_tipo} {self.usuario_id} no vídeo {self.video.id}"
+
+
+# -----------------------------
+# MODELO DE MENSAGEM
+# -----------------------------
 
 class Mensagem(models.Model):
     video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name="mensagens")

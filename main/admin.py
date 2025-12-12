@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from .models import Atleta, Agente, Video, Mensagem
+from .models import Atleta, Agente, Video, Mensagem, Like
 
 
 admin.site.register(Atleta)
 admin.site.register(Agente)
-admin.site.register(Mensagem)   
+admin.site.register(Mensagem)
+admin.site.register(Like)
 
 
 class MensagemInline(admin.TabularInline):
@@ -17,12 +18,18 @@ class MensagemInline(admin.TabularInline):
 
 
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'esporte', 'regiao', 'likes', 'preview_video')
+    list_display = ('nome', 'esporte', 'regiao', 'total_likes', 'preview_video')
     list_filter = ('esporte', 'regiao')
     search_fields = ('nome',)
-    list_editable = ('likes',)
     inlines = [MensagemInline]
 
+    # ---- MÉTODO PARA MOSTRAR OS LIKES ----
+    def total_likes(self, obj):
+        return obj.likes.count()
+
+    total_likes.short_description = 'Likes'
+
+    # ---- PREVIEW DO VÍDEO ----
     def preview_video(self, obj):
         if obj.arquivo:
             return mark_safe(

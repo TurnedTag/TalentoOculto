@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre • Talento Oculto</title>
+    <link rel="stylesheet" href="{% static 'css/tema.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sobre.css' %}">
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">Talento Oculto</div>
+    <button class="back-button" onclick="window.history.back();">← Voltar</button>
+</header>
+
+<section class="sobre-hero">
+    <div class="left">
+        <h1>Onde o Talento Encontra Oportunidade</h1>
+        <p>Uma plataforma para atletas exibirem seus melhores momentos e serem descobertos por agentes esportivos de todo o mundo.</p>
+    </div>
+
+    <div class="right">
+        <div class="athlete-img"></div>
+        <div class="shape"></div>
+    </div>
+</section>
+
+<section class="missao">
+    <h2>Nossa Essência</h2>
+
+    <div class="missao-grid">
+
+        <div class="missao-card">
+            <h3>⚡ Democratização</h3>
+            <p>Qualquer atleta, de qualquer lugar, pode finalmente ser visto. A visibilidade deixa de ser privilégio.</p>
+        </div>
+
+        <div class="missao-card">
+            <h3>🎯 Conexão Direta</h3>
+            <p>Agentes descobrem talentos em poucos cliques. Atletas mostram suas habilidades sem intermediários.</p>
+        </div>
+
+        <div class="missao-card">
+            <h3>🔥 Oportunidade Real</h3>
+            <p>Transformamos vídeos em futuras assinaturas de contrato. Cada post pode mudar um destino.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="linha-tempo">
+    <h2>O Caminho do Atleta</h2>
+
+    <div class="timeline">
+
+        <div class="step">
+            <div class="bullet"></div>
+            <h4>1. Crie seu Perfil</h4>
+            <p>Mostre quem você é, sua trajetória e conquistas.</p>
+        </div>
+
+        <div class="step">
+            <div class="bullet"></div>
+            <h4>2. Poste seus Vídeos</h4>
+            <p>Compartilhe treinos, competições e momentos de destaque.</p>
+        </div>
+
+        <div class="step">
+            <div class="bullet"></div>
+            <h4>3. Seja Descoberto</h4>
+            <p>Agentes avaliam suas habilidades e entram em contato.</p>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta">
+    <h2>Seu talento merece ser visto.</h2>
+</section>
+
+<footer>
+    © 2025 Talento Oculto — Todos os direitos reservados.
+</footer>
+
+<script src="{% static 'js/tema.js' %}"></script>
+</body>
+</html>

@@ -1,127 +1,215 @@
 /* ===========================
-       BODY
+       VARIÁVEIS DE TEMA
 =========================== */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #ffffff;
-    color: #000000;
-    line-height: 1.6;
+
+/* Tema Claro */
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+
+    --header-bg: #3A3A3A;
+    --header-text: #ffffff;
+
+    --footer-bg: #3A3A3A;
+    --footer-text: #ffffff;
+
+    --bg-card: #ffffff;
+    --card-border: #dcdcdc;
+    --link-color: #0A74DA;
+    --left-bg: #3A3A3A;
+}
+
+/* Tema Escuro */
+[data-theme="dark"] {
+    --bg: #1a1a1a;
+    --text: #f1f1f1;
+
+    --header-bg: #2b2b2b;
+    --header-text: #f1f1f1;
+
+    --footer-bg: #2b2b2b;
+    --footer-text: #f1f1f1;
+
+    --bg-card: #2a2a2a;
+    --card-border: #444;
+    --link-color: #4da3ff;
+    --left-bg: #2b2b2b;
 }
 
 /* ===========================
-       TOPO
+       BASE / BODY
+=========================== */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ===========================
+       HEADER — igual ao Termos
 =========================== */
 header {
-    background: #000000;
-    color: #ffffff;
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 40px 20px;
     text-align: center;
-    padding: 30px 15px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
 header h1 {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 28px;
+    font-size: 32px;
+    font-weight: 700;
 }
 
 header p {
-    margin-top: 5px;
-    font-size: 16px;
+    font-size: 15px;
+    opacity: 0.85;
+    margin-top: 8px;
 }
 
-/* ===========================
-       BOTÃO VOLTAR
-=========================== */
+/* Botão Voltar */
 .back-button {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+
     margin-top: 15px;
-    padding: 10px 18px;
-    background: #000000;
+    padding: 12px 20px;
+
+    background: #ffffff22;
     color: #ffffff;
-    border: none;
-    border-radius: 6px;
+    border: 2px solid #ffffff55;
+    border-radius: 10px;
+
     cursor: pointer;
     font-size: 14px;
-    transition: background 0.2s, transform 0.2s;
+    font-weight: 600;
+
+    transition: 0.3s;
 }
 
 .back-button:hover {
-    background: #333333;
+    background: #ffffff33;
     transform: translateY(-2px);
 }
 
 /* ===========================
        CONTAINER PRINCIPAL
 =========================== */
-.faq-container {
+.faq-container,
+.container {
+    width: 100%;
     max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
+
+    margin: 35px auto;
+    padding: 35px;
+
+    background: var(--bg-card);
+    border-radius: 14px;
+
+    box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+    border: 1px solid var(--card-border);
+
+    line-height: 1.7;
 }
 
 /* ===========================
        TÍTULOS DAS SEÇÕES
 =========================== */
-.faq-title {
-    margin-top: 40px;
+.faq-title,
+section h2 {
     font-size: 20px;
-    color: #000000;
-    font-weight: bold;
-    border-left: 5px solid #000000;
+    font-weight: 600;
+
+    border-left: 5px solid var(--link-color);
     padding-left: 12px;
+
+    margin-bottom: 14px;
+    margin-top: 35px;
 }
 
 /* ===========================
-       ITENS DE FAQ
+       ITENS FAQ / PARÁGRAFOS
 =========================== */
 .faq-item {
-    background: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-top: 15px;
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.faq-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    background: var(--bg-card);
+    padding: 4px 2px;
+    margin-top: 18px;
 }
 
 .faq-item h2 {
     font-size: 18px;
-    color: #000000;
+    font-weight: 600;
     margin-bottom: 8px;
 }
 
-.faq-item p, 
-.faq-item li {
+.faq-item p,
+.faq-item li,
+section p {
     font-size: 15px;
-    color: #333333;
-    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+/* listas */
+.faq-item ul,
+ul {
+    padding-left: 25px;
+    margin-top: 10px;
+}
+
+li {
+    margin-bottom: 8px;
 }
 
 /* ===========================
-       LISTAS
-=========================== */
-.faq-item ul {
-    padding-left: 20px;
-    margin-top: 8px;
-}
-
-.faq-item ul li {
-    margin-bottom: 5px;
-}
-
-/* ===========================
-       RODAPÉ
+       FOOTER
 =========================== */
 footer {
+    margin-top: auto;
     text-align: center;
-    background: #000000;
-    color: #ffffff;
-    padding: 20px;
-    margin-top: 40px;
-    font-size: 14px;
+
+    padding: 15px 10px;
+
+    background: var(--footer-bg);
+    color: var(--footer-text);
+
+    border-radius: 20px 20px 0 0;
+    border-top: 1px solid #ffffff22;
+
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* ===========================
+       RESPONSIVIDADE
+=========================== */
+@media (max-width: 850px) {
+
+    .faq-container,
+    .container {
+        width: 92%;
+        padding: 22px;
+        margin: 20px auto;
+    }
+
+    header {
+        border-radius: 0 0 14px 14px;
+        padding: 30px 12px;
+    }
+
+    .back-button {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .faq-title,
+    section h2 {
+        font-size: 18px;
+    }
 }

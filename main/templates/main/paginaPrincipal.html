@@ -42,7 +42,7 @@
 
             <select name="esporte" id="filtro-esporte">
             <option value="All">Todos os Esportes</option>
-
+            <!-- opções de esportes iguais ao original -->
             <option value="Atletismo" {% if request.GET.esporte == "Atletismo" %}selected{% endif %}>Atletismo</option>
             <option value="Badminton" {% if request.GET.esporte == "Badminton" %}selected{% endif %}>Badminton</option>
             <option value="Basquete" {% if request.GET.esporte == "Basquete" %}selected{% endif %}>Basquete</option>
@@ -113,7 +113,8 @@
                             onclick="darLike('{{ v.id|default:0 }}', this)">
                         <i class="fa-solid fa-thumbs-up"></i>
                     </button>
-                    <span class="like-count">{{ v.likes }}</span>
+                    <!-- ALTERAÇÃO SOMENTE AQUI -->
+                    <span class="like-count">{{ v.likes.count }}</span>
 
                     <!-- BOTÃO DE CONVERSA -->
                     <button class="chat-btn" data-video-id="{{ v.id }}">
@@ -135,7 +136,7 @@
     <ul>
         <li><a href="{% url 'perfil' %}">Perfil</a></li>
         <li><a href="{% url 'configuracoes' %}">Configurações</a></li>
-        <li><a href="{% url 'chats' %}">Chats</a></li> <!-- NOVO item de chats -->
+        <li><a href="{% url 'chats' %}">Chats</a></li>
         <li><a href="{% url 'index' %}">Sair</a></li>
     </ul>
 </nav>
